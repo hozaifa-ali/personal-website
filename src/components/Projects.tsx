@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { ExternalLink, Github, Star, GitFork, ArrowRight } from 'lucide-react'
+import SpotlightCard from './SpotlightCard'
 
 interface Repository {
   name: string
@@ -84,100 +85,91 @@ const Projects = ({ githubData }: ProjectsProps) => {
           </p>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-          {featuredProjects.map((project, index) => (
-            <motion.div
-              key={project.name}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1, duration: 0.6, ease: [0.23, 1, 0.32, 1] }}
-              className="group"
-              whileHover={{ y: -8 }}
-            >
-              <div className="card h-full p-4 sm:p-6 hover:border-brand-green/40 transition-all duration-300 flex flex-col relative overflow-hidden">
-                {/* Animated background glow */}
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-br from-brand-green/0 to-brand-green/0 group-hover:from-brand-green/5 group-hover:to-brand-green/0 transition-all duration-300 -z-10"
-                  initial={false}
-                />
-                
-                <div className="flex items-start justify-between mb-5 relative z-10">
-                  <div className="flex-1 min-w-0">
-                    <motion.h3
-                      className="text-lg font-bold text-gray-900 dark:text-white mb-2.5 group-hover:text-brand-green transition-colors line-clamp-1"
-                      whileHover={{ scale: 1.02 }}
-                    >
-                      {project.name}
-                    </motion.h3>
-                    {project.language && (
-                      <div className="flex items-center gap-2">
-                        <motion.div
-                          className="w-2.5 h-2.5 rounded-full flex-shrink-0"
-                          style={{ backgroundColor: getLanguageColor(project.language) }}
-                          animate={{ scale: [1, 1.2, 1] }}
-                          transition={{ duration: 2, repeat: Infinity }}
-                        />
-                        <span className="text-xs text-gray-500 dark:text-gray-400 font-medium">{project.language}</span>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-fr">
+          {featuredProjects.map((project, index) => {
+            // First project is featured (larger in Bento grid)
+            const isFeatured = index === 0
+
+            return (
+              <motion.div
+                key={project.name}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1, duration: 0.6, ease: [0.23, 1, 0.32, 1] }}
+                className={`group ${isFeatured ? 'md:col-span-2 md:row-span-2' : 'col-span-1'}`}
+                whileHover={{ y: -4 }}
+              >
+                <SpotlightCard className="h-full hover:border-brand-green/30 transition-colors duration-500">
+                  <div className={`p-6 sm:p-8 flex flex-col h-full ${isFeatured ? 'justify-between' : ''}`}>
+
+                    <div className="flex items-start justify-between mb-4">
+                      <div className="flex-1 min-w-0 pr-4">
+                        <motion.h3
+                          className={`${isFeatured ? 'text-2xl md:text-3xl' : 'text-lg'} font-bold text-gray-900 dark:text-white mb-3 group-hover:text-brand-green transition-colors`}
+                        >
+                          {project.name}
+                        </motion.h3>
+
+                        {project.language && (
+                          <div className="flex items-center gap-2 mb-4">
+                            <div
+                              className="w-2.5 h-2.5 rounded-full flex-shrink-0 shadow-[0_0_10px_rgba(0,0,0,0.2)]"
+                              style={{ backgroundColor: getLanguageColor(project.language) }}
+                            />
+                            <span className="text-xs text-gray-500 dark:text-gray-400 font-mono uppercase tracking-wider">{project.language}</span>
+                          </div>
+                        )}
                       </div>
-                    )}
-                  </div>
-                </div>
 
-                <p className="text-gray-600 dark:text-gray-400 mb-6 text-sm leading-relaxed line-clamp-3 flex-1 relative z-10">
-                  {project.description || 'A professional project showcasing modern development practices.'}
-                </p>
+                      <div className="flex gap-2">
+                        {project.html_url && (
+                          <a
+                            href={project.html_url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="p-2 rounded-full text-gray-500 hover:text-brand-green hover:bg-brand-green/10 transition-colors"
+                            aria-label="GitHub"
+                          >
+                            <Github size={isFeatured ? 24 : 20} />
+                          </a>
+                        )}
+                      </div>
+                    </div>
 
-                <div className="space-y-4 pt-5 border-t border-gray-200 dark:border-gray-800 relative z-10">
-                  <div className="flex items-center gap-4 text-xs text-gray-500 dark:text-gray-400">
-                    <motion.div
-                      className="flex items-center gap-1.5"
-                      whileHover={{ scale: 1.1 }}
-                    >
-                      <Star size={14} />
-                      <span className="font-medium">{project.stars}</span>
-                    </motion.div>
-                    <motion.div
-                      className="flex items-center gap-1.5"
-                      whileHover={{ scale: 1.1 }}
-                    >
-                      <GitFork size={14} />
-                      <span className="font-medium">{project.forks}</span>
-                    </motion.div>
-                  </div>
+                    <p className={`text-gray-600 dark:text-gray-400 leading-relaxed mb-6 ${isFeatured ? 'text-lg md:text-xl line-clamp-4' : 'text-sm line-clamp-3'}`}>
+                      {project.description || 'A professional project showcasing modern development practices.'}
+                    </p>
 
-                  <div className="flex items-center gap-3">
-                    {project.html_url && (
-                      <a
-                        href={project.html_url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="group/link flex items-center gap-1.5 text-sm text-gray-600 dark:text-gray-400 hover:text-brand-green transition-colors font-medium"
-                        aria-label="View on GitHub"
-                      >
-                        <motion.div whileHover={{ scale: 1.2 }}>
-                          <Github size={16} />
-                        </motion.div>
-                        <span>Code</span>
-                      </a>
-                    )}
-                    {project.homepage && (
-                      <motion.a
-                        href={project.homepage}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="group/link flex items-center gap-1.5 text-sm text-brand-green hover:text-brand-green-dark font-semibold transition-colors ml-auto"
-                        whileHover={{ x: 4 }}
-                      >
-                        <span>Live Demo</span>
-                        <ArrowRight size={14} />
-                      </motion.a>
-                    )}
+                    <div className={`mt-auto pt-6 border-t border-gray-100 dark:border-gray-800/50 flex items-center justify-between ${isFeatured ? 'flex-row' : 'flex-col sm:flex-row gap-4 sm:gap-0'}`}>
+                      <div className="flex items-center gap-6 text-sm text-gray-500 dark:text-gray-400">
+                        <div className="flex items-center gap-2">
+                          <Star size={16} className={`${isFeatured ? 'text-yellow-400' : ''}`} />
+                          <span className="font-medium">{project.stars}</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <GitFork size={16} />
+                          <span className="font-medium">{project.forks}</span>
+                        </div>
+                      </div>
+
+                      {project.homepage && (
+                        <a
+                          href={project.homepage}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={`inline-flex items-center gap-2 text-brand-green font-semibold group/link ${isFeatured ? 'text-base' : 'text-sm'}`}
+                        >
+                          Live Demo
+                          <ArrowRight size={16} className="group-hover/link:translate-x-1 transition-transform" />
+                        </a>
+                      )}
+                    </div>
                   </div>
-                </div>
-              </div>
-            </motion.div>
-          ))}
+                </SpotlightCard>
+              </motion.div>
+            )
+          })}
         </div>
 
         <motion.div

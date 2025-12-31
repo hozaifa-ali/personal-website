@@ -43,10 +43,10 @@ const SkillsMarquee = () => {
     <div className="py-6">
       <LogoLoop
         logos={skillLogos}
-        speed={120}
+        speed={50}
         direction="left"
         logoHeight={40}
-        gap={48}
+        gap={60}
         pauseOnHover
         scaleOnHover
         fadeOut

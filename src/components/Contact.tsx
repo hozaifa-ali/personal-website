@@ -22,7 +22,7 @@ const Contact = () => {
 
     // REPLACE THIS URL WITH YOUR OWN FORMSPREE ENDPOINT
     // Example: https://formspree.io/f/xyzkqwer
-    const FORMSPREE_ENDPOINT = 'https://formspree.io/f/PLACEHOLDER_FORM_ID'
+    const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mpqwakjp'
 
     try {
       const response = await fetch(FORMSPREE_ENDPOINT, {
