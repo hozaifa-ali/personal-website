@@ -29,7 +29,10 @@ const Navigation = () => {
           setActiveSection(entry.target.id)
         }
       })
-    }, { threshold: 0.5 })
+    }, {
+      threshold: 0.2,
+      rootMargin: '-30% 0px -30% 0px'
+    })
 
     sections.forEach(section => {
       const element = document.getElementById(section)
@@ -97,8 +100,8 @@ const Navigation = () => {
                       href={item.href}
                       onMouseEnter={() => setHoveredIndex(index)}
                       className={`px-4 py-2 text-sm font-medium rounded-full transition-colors relative z-10 ${hoveredIndex === index || (isActive && hoveredIndex === null)
-                          ? 'text-brand-green dark:text-brand-green'
-                          : 'text-gray-700 dark:text-gray-300'
+                        ? 'text-brand-green dark:text-brand-green'
+                        : 'text-gray-700 dark:text-gray-300'
                         }`}
                     >
                       {item.name}

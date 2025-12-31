@@ -65,7 +65,7 @@ const Projects = ({ githubData }: ProjectsProps) => {
   }
 
   return (
-    <section id="projects" className="py-16 sm:py-24 md:py-32 relative bg-gray-50 dark:bg-gray-900 overflow-hidden">
+    <section id="projects" className="py-16 sm:py-24 md:py-32 relative bg-gray-50/10 dark:bg-gray-900/10 backdrop-blur-[2px] overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6 max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 30 }}

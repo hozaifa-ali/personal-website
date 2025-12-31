@@ -9,7 +9,7 @@ import CustomCursor from './components/CustomCursor'
 
 function App() {
   return (
-    <div className="min-h-screen bg-white dark:bg-black transition-colors duration-300">
+    <div className="min-h-screen bg-transparent transition-colors duration-300">
       <CustomCursor />
       <Navigation />
       <Hero />

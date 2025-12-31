@@ -29,7 +29,7 @@ const About = () => {
   ]
 
   return (
-    <section id="about" className="py-16 sm:py-24 md:py-32 relative bg-white dark:bg-gray-950 overflow-hidden">
+    <section id="about" className="py-16 sm:py-24 md:py-32 relative bg-white/10 dark:bg-gray-950/10 backdrop-blur-[2px] overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6 max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 30 }}

@@ -16,8 +16,11 @@ const Contact = () => {
     errors: [] as any[]
   })
 
+
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+
     setStatus({ submitting: true, succeeded: false, errors: [] })
 
     // REPLACE THIS URL WITH YOUR OWN FORMSPREE ENDPOINT
@@ -31,7 +34,9 @@ const Contact = () => {
           'Content-Type': 'application/json',
           'Accept': 'application/json'
         },
-        body: JSON.stringify(formData)
+        body: JSON.stringify({
+          ...formData, // Include existing form data
+        })
       })
 
       const data = await response.json()
@@ -69,7 +74,7 @@ const Contact = () => {
   ]
 
   return (
-    <section id="contact" className="py-16 sm:py-24 md:py-32 relative bg-white dark:bg-gray-950 overflow-hidden">
+    <section id="contact" className="py-16 sm:py-24 md:py-32 relative bg-white/10 dark:bg-gray-950/10 backdrop-blur-[2px] overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6 max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -166,12 +171,9 @@ const Contact = () => {
               </motion.div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
-                {/* INSTRUCTIONS FOR USER: 
-                    1. Go to https://formspree.io/ and sign up for free.
-                    2. Create a new form.
-                    3. Copy your Form ID (e.g., "xayzbnwq") and paste it below in the fetch URL:
-                       https://formspree.io/f/YOUR_FORM_ID
-                */}
+                {/* Honeypot field for bots */}
+                <input type="text" name="_gotcha" style={{ display: 'none' }} />
+
                 <div>
                   <label htmlFor="name" className="block text-gray-700 dark:text-gray-300 mb-2.5 text-sm font-semibold">
                     Name
@@ -221,6 +223,8 @@ const Contact = () => {
                   />
                 </div>
 
+
+
                 {status.errors.length > 0 && (
                   <div className="text-red-500 text-sm bg-red-50 dark:bg-red-900/10 p-3 rounded-lg border border-red-200 dark:border-red-800">
                     {status.errors.map((err: any, i) => (
@@ -259,7 +263,7 @@ const Contact = () => {
           <MagicName />
         </motion.div>
       </div>
-    </section>
+    </section >
   )
 }
 

@@ -3,7 +3,7 @@ import { Github, Linkedin, Mail, ArrowDown } from 'lucide-react'
 
 const Hero = () => {
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-24 pb-20 md:pt-12 bg-gradient-to-b from-gray-50 via-white to-white dark:from-gray-950 dark:via-black dark:to-black">
+    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-24 pb-20 md:pt-12 bg-gradient-to-b from-gray-50/20 via-white/10 to-white/10 dark:from-gray-950/20 dark:via-black/10 dark:to-black/10 backdrop-blur-[2px]">
       {/* Subtle background pattern */}
       <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05]">
         <div className="absolute inset-0" style={{
