@@ -10,11 +10,41 @@ const Contact = () => {
     message: '',
   })
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [status, setStatus] = useState({
+    submitting: false,
+    succeeded: false,
+    errors: [] as any[]
+  })
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    console.log('Form submitted:', formData)
-    alert('Thank you for your message! I will get back to you soon.')
-    setFormData({ name: '', email: '', message: '' })
+    setStatus({ submitting: true, succeeded: false, errors: [] })
+
+    // REPLACE THIS URL WITH YOUR OWN FORMSPREE ENDPOINT
+    // Example: https://formspree.io/f/xyzkqwer
+    const FORMSPREE_ENDPOINT = 'https://formspree.io/f/PLACEHOLDER_FORM_ID'
+
+    try {
+      const response = await fetch(FORMSPREE_ENDPOINT, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      })
+
+      const data = await response.json()
+
+      if (response.ok) {
+        setStatus({ submitting: false, succeeded: true, errors: [] })
+        setFormData({ name: '', email: '', message: '' })
+      } else {
+        setStatus({ submitting: false, succeeded: false, errors: data.errors || [{ message: 'Submission failed' }] })
+      }
+    } catch (error) {
+      setStatus({ submitting: false, succeeded: false, errors: [{ message: 'Network error. Please try again.' }] })
+    }
   }
 
   const contactInfo = [
@@ -118,57 +148,103 @@ const Contact = () => {
             className="card p-6 sm:p-8"
           >
             <h3 className="text-xl font-bold mb-8 text-gray-900 dark:text-white">Send a Message</h3>
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <label htmlFor="name" className="block text-gray-700 dark:text-gray-300 mb-2.5 text-sm font-semibold">
-                  Name
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  required
-                  className="w-full px-4 py-3.5 glass rounded-xl text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-brand-green/50 transition-all bg-white dark:bg-gray-800/50"
-                  placeholder="Your name"
-                />
-              </div>
-              <div>
-                <label htmlFor="email" className="block text-gray-700 dark:text-gray-300 mb-2.5 text-sm font-semibold">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  required
-                  className="w-full px-4 py-3.5 glass rounded-xl text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-brand-green/50 transition-all bg-white dark:bg-gray-800/50"
-                  placeholder="your.email@example.com"
-                />
-              </div>
-              <div>
-                <label htmlFor="message" className="block text-gray-700 dark:text-gray-300 mb-2.5 text-sm font-semibold">
-                  Message
-                </label>
-                <textarea
-                  id="message"
-                  value={formData.message}
-                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  required
-                  rows={5}
-                  className="w-full px-4 py-3.5 glass rounded-xl text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-brand-green/50 transition-all resize-none bg-white dark:bg-gray-800/50"
-                  placeholder="Your message..."
-                />
-              </div>
-              <button
-                type="submit"
-                className="w-full bg-brand-green hover:bg-brand-green-dark text-white font-semibold px-8 py-4 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-brand-green/25 hover:scale-[1.02] active:scale-[0.98]"
+
+            {status.succeeded ? (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="bg-brand-green/10 text-brand-green p-6 rounded-xl border border-brand-green/20 text-center"
               >
-                Send Message
-                <Send size={18} />
-              </button>
-            </form>
+                <p className="font-semibold text-lg mb-2">Message Sent!</p>
+                <p className="text-gray-600 dark:text-gray-400">Thanks for reaching out. I'll get back to you shortly.</p>
+                <button
+                  onClick={() => setStatus({ submitting: false, succeeded: false, errors: [] })}
+                  className="mt-4 text-sm font-medium underline hover:text-brand-green-dark"
+                >
+                  Send another message
+                </button>
+              </motion.div>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-6">
+                {/* INSTRUCTIONS FOR USER: 
+                    1. Go to https://formspree.io/ and sign up for free.
+                    2. Create a new form.
+                    3. Copy your Form ID (e.g., "xayzbnwq") and paste it below in the fetch URL:
+                       https://formspree.io/f/YOUR_FORM_ID
+                */}
+                <div>
+                  <label htmlFor="name" className="block text-gray-700 dark:text-gray-300 mb-2.5 text-sm font-semibold">
+                    Name
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name" // Name attribute is required for Formspree
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    required
+                    disabled={status.submitting}
+                    className="w-full px-4 py-3.5 glass rounded-xl text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-brand-green/50 transition-all bg-white dark:bg-gray-800/50 disabled:opacity-50"
+                    placeholder="Your name"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="email" className="block text-gray-700 dark:text-gray-300 mb-2.5 text-sm font-semibold">
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email" // Name attribute is required
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    required
+                    disabled={status.submitting}
+                    className="w-full px-4 py-3.5 glass rounded-xl text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-brand-green/50 transition-all bg-white dark:bg-gray-800/50 disabled:opacity-50"
+                    placeholder="your.email@example.com"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="message" className="block text-gray-700 dark:text-gray-300 mb-2.5 text-sm font-semibold">
+                    Message
+                  </label>
+                  <textarea
+                    id="message"
+                    name="message" // Name attribute is required
+                    value={formData.message}
+                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                    required
+                    rows={5}
+                    disabled={status.submitting}
+                    className="w-full px-4 py-3.5 glass rounded-xl text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-brand-green/50 transition-all resize-none bg-white dark:bg-gray-800/50 disabled:opacity-50"
+                    placeholder="Your message..."
+                  />
+                </div>
+
+                {status.errors.length > 0 && (
+                  <div className="text-red-500 text-sm bg-red-50 dark:bg-red-900/10 p-3 rounded-lg border border-red-200 dark:border-red-800">
+                    {status.errors.map((err: any, i) => (
+                      <p key={i}>Error: {err.message || "Something went wrong. Please try again."}</p>
+                    ))}
+                  </div>
+                )}
+
+                <button
+                  type="submit"
+                  disabled={status.submitting}
+                  className="w-full bg-brand-green hover:bg-brand-green-dark text-white font-semibold px-8 py-4 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-brand-green/25 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-70 disabled:hover:scale-100 disabled:cursor-not-allowed"
+                >
+                  {status.submitting ? (
+                    'Sending...'
+                  ) : (
+                    <>
+                      Send Message
+                      <Send size={18} />
+                    </>
+                  )}
+                </button>
+              </form>
+            )}
           </motion.div>
         </div>
 

@@ -93,18 +93,30 @@ const Projects = ({ githubData }: ProjectsProps) => {
               viewport={{ once: true }}
               transition={{ delay: index * 0.1, duration: 0.6, ease: [0.23, 1, 0.32, 1] }}
               className="group"
+              whileHover={{ y: -8 }}
             >
-              <div className="card h-full p-4 sm:p-6 hover:border-brand-green/40 transition-all duration-300 flex flex-col">
-                <div className="flex items-start justify-between mb-5">
+              <div className="card h-full p-4 sm:p-6 hover:border-brand-green/40 transition-all duration-300 flex flex-col relative overflow-hidden">
+                {/* Animated background glow */}
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-br from-brand-green/0 to-brand-green/0 group-hover:from-brand-green/5 group-hover:to-brand-green/0 transition-all duration-300 -z-10"
+                  initial={false}
+                />
+                
+                <div className="flex items-start justify-between mb-5 relative z-10">
                   <div className="flex-1 min-w-0">
-                    <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2.5 group-hover:text-brand-green transition-colors line-clamp-1">
+                    <motion.h3
+                      className="text-lg font-bold text-gray-900 dark:text-white mb-2.5 group-hover:text-brand-green transition-colors line-clamp-1"
+                      whileHover={{ scale: 1.02 }}
+                    >
                       {project.name}
-                    </h3>
+                    </motion.h3>
                     {project.language && (
                       <div className="flex items-center gap-2">
-                        <div
+                        <motion.div
                           className="w-2.5 h-2.5 rounded-full flex-shrink-0"
                           style={{ backgroundColor: getLanguageColor(project.language) }}
+                          animate={{ scale: [1, 1.2, 1] }}
+                          transition={{ duration: 2, repeat: Infinity }}
                         />
                         <span className="text-xs text-gray-500 dark:text-gray-400 font-medium">{project.language}</span>
                       </div>
@@ -112,20 +124,26 @@ const Projects = ({ githubData }: ProjectsProps) => {
                   </div>
                 </div>
 
-                <p className="text-gray-600 dark:text-gray-400 mb-6 text-sm leading-relaxed line-clamp-3 flex-1">
+                <p className="text-gray-600 dark:text-gray-400 mb-6 text-sm leading-relaxed line-clamp-3 flex-1 relative z-10">
                   {project.description || 'A professional project showcasing modern development practices.'}
                 </p>
 
-                <div className="space-y-4 pt-5 border-t border-gray-200 dark:border-gray-800">
+                <div className="space-y-4 pt-5 border-t border-gray-200 dark:border-gray-800 relative z-10">
                   <div className="flex items-center gap-4 text-xs text-gray-500 dark:text-gray-400">
-                    <div className="flex items-center gap-1.5">
+                    <motion.div
+                      className="flex items-center gap-1.5"
+                      whileHover={{ scale: 1.1 }}
+                    >
                       <Star size={14} />
                       <span className="font-medium">{project.stars}</span>
-                    </div>
-                    <div className="flex items-center gap-1.5">
+                    </motion.div>
+                    <motion.div
+                      className="flex items-center gap-1.5"
+                      whileHover={{ scale: 1.1 }}
+                    >
                       <GitFork size={14} />
                       <span className="font-medium">{project.forks}</span>
-                    </div>
+                    </motion.div>
                   </div>
 
                   <div className="flex items-center gap-3">
@@ -137,20 +155,23 @@ const Projects = ({ githubData }: ProjectsProps) => {
                         className="group/link flex items-center gap-1.5 text-sm text-gray-600 dark:text-gray-400 hover:text-brand-green transition-colors font-medium"
                         aria-label="View on GitHub"
                       >
-                        <Github size={16} className="group-hover/link:scale-110 transition-transform" />
+                        <motion.div whileHover={{ scale: 1.2 }}>
+                          <Github size={16} />
+                        </motion.div>
                         <span>Code</span>
                       </a>
                     )}
                     {project.homepage && (
-                      <a
+                      <motion.a
                         href={project.homepage}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="group/link flex items-center gap-1.5 text-sm text-brand-green hover:text-brand-green-dark font-semibold transition-colors ml-auto"
+                        whileHover={{ x: 4 }}
                       >
                         <span>Live Demo</span>
-                        <ArrowRight size={14} className="group-hover/link:translate-x-0.5 transition-transform" />
-                      </a>
+                        <ArrowRight size={14} />
+                      </motion.a>
                     )}
                   </div>
                 </div>

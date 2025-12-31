@@ -38,7 +38,22 @@ const Hero = () => {
                 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] text-gray-900 dark:text-white tracking-tight"
               >
                 <span className="block">Hi, I'm</span>
-                <span className="block text-brand-green mt-2">Hozaifa Ali</span>
+                <span className="block mt-2 relative z-20">
+                  {"Hozaifa Ali".split('').map((letter, index) => (
+                    <motion.span
+                      key={index}
+                      className="inline-block text-brand-green cursor-grab active:cursor-grabbing relative"
+                      drag
+                      dragSnapToOrigin
+                      dragElastic={0.2}
+                      dragTransition={{ bounceStiffness: 600, bounceDamping: 20 }}
+                      whileDrag={{ scale: 1.2, zIndex: 100, cursor: "grabbing" }}
+                      whileHover={{ scale: 1.1, y: -5 }}
+                    >
+                      {letter === ' ' ? '\u00A0' : letter}
+                    </motion.span>
+                  ))}
+                </span>
               </motion.h1>
             </div>
 
@@ -58,19 +73,32 @@ const Hero = () => {
               transition={{ delay: 0.7, duration: 0.8 }}
               className="flex flex-wrap gap-4 pt-2"
             >
-              <a
+              <motion.a
                 href="#projects"
-                className="group inline-flex items-center gap-2 bg-brand-green hover:bg-brand-green-dark text-white font-semibold px-6 py-3.5 rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-brand-green/25 hover:scale-[1.02] active:scale-[0.98]"
+                className="group inline-flex items-center gap-2 bg-brand-green hover:bg-brand-green-dark text-white font-semibold px-6 py-3.5 rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-brand-green/25 active:scale-[0.98] relative overflow-hidden"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.95 }}
               >
+                <motion.div
+                  className="absolute inset-0 bg-white/0 group-hover:bg-white/10"
+                  transition={{ duration: 0.3 }}
+                />
                 View Projects
-                <ArrowDown size={18} className="group-hover:translate-y-0.5 transition-transform" />
-              </a>
-              <a
+                <motion.div
+                  animate={{ y: [0, 4, 0] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                >
+                  <ArrowDown size={18} />
+                </motion.div>
+              </motion.a>
+              <motion.a
                 href="#contact"
-                className="inline-flex items-center gap-2 glass-strong px-6 py-3.5 rounded-xl font-semibold text-gray-700 dark:text-white hover:border-brand-green/30 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+                className="inline-flex items-center gap-2 glass-strong px-6 py-3.5 rounded-xl font-semibold text-gray-700 dark:text-white hover:border-brand-green/30 transition-all duration-300 active:scale-[0.98]"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.95 }}
               >
                 Get In Touch
-              </a>
+              </motion.a>
             </motion.div>
 
             <motion.div
