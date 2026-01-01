@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import { Mail, Github, Linkedin, MapPin, Send } from 'lucide-react'
 import { useState } from 'react'
 import MagicName from './MagicName'
+import SocialBadges from './SocialBadges'
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -56,8 +57,8 @@ const Contact = () => {
     {
       icon: <Mail className="text-brand-green" size={20} />,
       label: 'Email',
-      value: 'hozaifa.ali@example.com',
-      link: 'mailto:hozaifa.ali@example.com',
+      value: 'hozaifaa095@gmail.com',
+      link: 'mailto:hozaifaa095@gmail.com',
     },
     {
       icon: <Github className="text-brand-green" size={20} />,
@@ -250,6 +251,11 @@ const Contact = () => {
               </form>
             )}
           </motion.div>
+        </div>
+
+        {/* Social Badges Section */}
+        <div className="mt-16 sm:mt-24">
+          <SocialBadges />
         </div>
 
         {/* Magic Name Section */}

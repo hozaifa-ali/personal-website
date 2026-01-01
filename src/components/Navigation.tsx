@@ -30,8 +30,8 @@ const Navigation = () => {
         }
       })
     }, {
-      threshold: 0.2,
-      rootMargin: '-30% 0px -30% 0px'
+      threshold: 0.15,
+      rootMargin: '-20% 0px -20% 0px'
     })
 
     sections.forEach(section => {

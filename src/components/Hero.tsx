@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
-import { Github, Linkedin, Mail, ArrowDown } from 'lucide-react'
+import { ArrowDown } from 'lucide-react'
+import HeroSocials from './HeroSocials'
 
 const Hero = () => {
   return (
@@ -105,31 +106,8 @@ const Hero = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.9, duration: 0.8 }}
-              className="flex gap-6 pt-2"
             >
-              <a
-                href="https://github.com/hozi8-web3"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group text-gray-500 dark:text-gray-400 hover:text-brand-green transition-colors duration-300 flex items-center gap-2"
-              >
-                <Github size={20} className="group-hover:scale-110 transition-transform" />
-                <span className="text-sm font-medium">GitHub</span>
-              </a>
-              <a
-                href="#contact"
-                className="group text-gray-500 dark:text-gray-400 hover:text-brand-green transition-colors duration-300 flex items-center gap-2"
-              >
-                <Linkedin size={20} className="group-hover:scale-110 transition-transform" />
-                <span className="text-sm font-medium">LinkedIn</span>
-              </a>
-              <a
-                href="#contact"
-                className="group text-gray-500 dark:text-gray-400 hover:text-brand-green transition-colors duration-300 flex items-center gap-2"
-              >
-                <Mail size={20} className="group-hover:scale-110 transition-transform" />
-                <span className="text-sm font-medium">Email</span>
-              </a>
+              <HeroSocials />
             </motion.div>
           </motion.div>
 
