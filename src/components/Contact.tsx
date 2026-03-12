@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
-import { Mail, Github, Linkedin, MapPin, Send } from 'lucide-react'
+import { Mail, Github, MapPin, Send } from 'lucide-react'
 import { useState } from 'react'
-import MagicName from './MagicName'
+
 import SocialBadges from './SocialBadges'
 
 const Contact = () => {
@@ -85,10 +85,10 @@ const Contact = () => {
           className="mb-12 sm:mb-16 md:mb-20"
         >
           <div className="flex items-center gap-4 mb-6">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white tracking-tight">
-              Get In <span className="text-brand-green">Touch</span>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-mono font-bold tracking-widest text-gray-900 dark:text-white uppercase text-shadow-retro">
+              Get In <span className="text-emerald-500">Touch</span>
             </h2>
-            <div className="h-1 flex-1 max-w-24 bg-gradient-to-r from-brand-green to-transparent" />
+            <div className="h-1 flex-1 max-w-24 bg-gray-900 dark:bg-emerald-500" />
           </div>
           <p className="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-4xl">
             Have a project in mind or want to collaborate? I'd love to hear from you.
@@ -104,8 +104,8 @@ const Contact = () => {
             transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
             className="space-y-6"
           >
-            <div className="card p-6 sm:p-8">
-              <h3 className="text-xl font-bold mb-8 text-gray-900 dark:text-white">Contact Information</h3>
+            <div className="retro-card p-6 sm:p-8">
+              <h3 className="text-xl font-mono font-bold uppercase tracking-wider mb-8 text-gray-900 dark:text-white border-b-2 border-gray-900 dark:border-emerald-500 pb-2">Contact Information</h3>
               <div className="space-y-6">
                 {contactInfo.map((info, index) => (
                   <motion.div
@@ -116,20 +116,20 @@ const Contact = () => {
                     transition={{ delay: index * 0.1, duration: 0.5 }}
                     className="flex items-center gap-4 group"
                   >
-                    <div className="p-3 glass rounded-xl flex-shrink-0 group-hover:scale-110 transition-transform">{info.icon}</div>
+                    <div className="p-3 bg-[#f4f4f0] dark:bg-[#111] border-2 border-gray-900 dark:border-emerald-500 shadow-[2px_2px_0px_rgba(17,24,39,1)] group-hover:shadow-[4px_4px_0px_rgba(17,24,39,1)] group-hover:-translate-y-1 transition-all rounded-none flex-shrink-0">{info.icon}</div>
                     <div>
-                      <p className="text-gray-400 dark:text-gray-500 text-xs font-mono uppercase tracking-wider mb-1.5 font-medium">{info.label}</p>
+                      <p className="text-gray-500 dark:text-gray-400 text-xs font-mono uppercase tracking-widest mb-1.5 font-bold">{info.label}</p>
                       {info.link ? (
                         <a
                           href={info.link}
                           target={info.link.startsWith('http') ? '_blank' : undefined}
                           rel={info.link.startsWith('http') ? 'noopener noreferrer' : undefined}
-                          className="text-gray-900 dark:text-white hover:text-brand-green transition-colors text-lg font-medium"
+                          className="text-gray-900 dark:text-white hover:text-emerald-500 font-mono transition-colors text-lg font-bold"
                         >
                           {info.value}
                         </a>
                       ) : (
-                        <p className="text-gray-900 dark:text-white text-lg font-medium">{info.value}</p>
+                        <p className="text-gray-900 dark:text-white text-lg font-mono font-bold">{info.value}</p>
                       )}
                     </div>
                   </motion.div>
@@ -137,11 +137,11 @@ const Contact = () => {
               </div>
             </div>
 
-            <div className="card p-6 sm:p-8">
-              <h3 className="text-xl font-bold mb-6 text-gray-900 dark:text-white">Education</h3>
-              <p className="text-brand-green text-xl font-bold mb-2">Software Engineering</p>
-              <p className="text-gray-600 dark:text-gray-400 font-medium">UET Lahore</p>
-              <p className="text-gray-500 dark:text-gray-500 text-sm mt-3">Lahore, Pakistan</p>
+            <div className="retro-card p-6 sm:p-8">
+              <h3 className="text-xl font-mono font-bold uppercase tracking-wider mb-6 text-gray-900 dark:text-white border-b-2 border-gray-900 dark:border-emerald-500 pb-2">Education</h3>
+              <p className="text-emerald-500 text-xl font-mono uppercase tracking-tight font-bold mb-2">Software Engineering</p>
+              <p className="text-gray-900 dark:text-gray-100 font-mono font-bold text-lg">UET Lahore</p>
+              <p className="text-gray-700 dark:text-gray-400 text-sm mt-3 font-mono">Lahore, Pakistan</p>
             </div>
           </motion.div>
 
@@ -151,9 +151,9 @@ const Contact = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
-            className="card p-6 sm:p-8"
+            className="retro-card p-6 sm:p-8"
           >
-            <h3 className="text-xl font-bold mb-8 text-gray-900 dark:text-white">Send a Message</h3>
+            <h3 className="text-xl font-mono font-bold uppercase tracking-wider mb-8 text-gray-900 dark:text-white border-b-2 border-gray-900 dark:border-emerald-500 pb-2">Send a Message</h3>
 
             {status.succeeded ? (
               <motion.div
@@ -176,7 +176,7 @@ const Contact = () => {
                 <input type="text" name="_gotcha" style={{ display: 'none' }} />
 
                 <div>
-                  <label htmlFor="name" className="block text-gray-700 dark:text-gray-300 mb-2.5 text-sm font-semibold">
+                  <label htmlFor="name" className="block text-gray-900 dark:text-gray-100 mb-2.5 text-sm font-mono font-bold uppercase tracking-widest">
                     Name
                   </label>
                   <input
@@ -187,12 +187,12 @@ const Contact = () => {
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     required
                     disabled={status.submitting}
-                    className="w-full px-4 py-3.5 glass rounded-xl text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-brand-green/50 transition-all bg-white dark:bg-gray-800/50 disabled:opacity-50"
-                    placeholder="Your name"
+                    className="w-full px-4 py-3.5 bg-[#f4f4f0] dark:bg-[#0a0a0a] border-2 border-gray-900 dark:border-gray-600 text-gray-900 dark:text-white placeholder-gray-500 focus:outline-none focus:border-emerald-500 shadow-[4px_4px_0px_rgba(17,24,39,1)] dark:shadow-[4px_4px_0px_rgba(16,185,129,0.2)] focus:shadow-[6px_6px_0px_rgba(17,24,39,1)] dark:focus:shadow-[6px_6px_0px_rgba(16,185,129,0.5)] transition-all font-mono disabled:opacity-50 rounded-none terminal-cursor-focus"
+                    placeholder="Identify yourself..."
                   />
                 </div>
                 <div>
-                  <label htmlFor="email" className="block text-gray-700 dark:text-gray-300 mb-2.5 text-sm font-semibold">
+                  <label htmlFor="email" className="block text-gray-900 dark:text-gray-100 mb-2.5 text-sm font-mono font-bold uppercase tracking-widest">
                     Email
                   </label>
                   <input
@@ -203,12 +203,12 @@ const Contact = () => {
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     required
                     disabled={status.submitting}
-                    className="w-full px-4 py-3.5 glass rounded-xl text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-brand-green/50 transition-all bg-white dark:bg-gray-800/50 disabled:opacity-50"
-                    placeholder="your.email@example.com"
+                    className="w-full px-4 py-3.5 bg-[#f4f4f0] dark:bg-[#0a0a0a] border-2 border-gray-900 dark:border-gray-600 text-gray-900 dark:text-white placeholder-gray-500 focus:outline-none focus:border-emerald-500 shadow-[4px_4px_0px_rgba(17,24,39,1)] dark:shadow-[4px_4px_0px_rgba(16,185,129,0.2)] focus:shadow-[6px_6px_0px_rgba(17,24,39,1)] dark:focus:shadow-[6px_6px_0px_rgba(16,185,129,0.5)] transition-all font-mono disabled:opacity-50 rounded-none terminal-cursor-focus"
+                    placeholder="your.email@mainframe.com"
                   />
                 </div>
                 <div>
-                  <label htmlFor="message" className="block text-gray-700 dark:text-gray-300 mb-2.5 text-sm font-semibold">
+                  <label htmlFor="message" className="block text-gray-900 dark:text-gray-100 mb-2.5 text-sm font-mono font-bold uppercase tracking-widest">
                     Message
                   </label>
                   <textarea
@@ -219,8 +219,8 @@ const Contact = () => {
                     required
                     rows={5}
                     disabled={status.submitting}
-                    className="w-full px-4 py-3.5 glass rounded-xl text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-brand-green/50 transition-all resize-none bg-white dark:bg-gray-800/50 disabled:opacity-50"
-                    placeholder="Your message..."
+                    className="w-full px-4 py-3.5 bg-[#f4f4f0] dark:bg-[#0a0a0a] border-2 border-gray-900 dark:border-gray-600 text-gray-900 dark:text-white placeholder-gray-500 focus:outline-none focus:border-emerald-500 shadow-[4px_4px_0px_rgba(17,24,39,1)] dark:shadow-[4px_4px_0px_rgba(16,185,129,0.2)] focus:shadow-[6px_6px_0px_rgba(17,24,39,1)] dark:focus:shadow-[6px_6px_0px_rgba(16,185,129,0.5)] transition-all font-mono disabled:opacity-50 resize-none rounded-none terminal-cursor-focus"
+                    placeholder="Enter message..."
                   />
                 </div>
 
@@ -237,7 +237,7 @@ const Contact = () => {
                 <button
                   type="submit"
                   disabled={status.submitting}
-                  className="w-full bg-brand-green hover:bg-brand-green-dark text-white font-semibold px-8 py-4 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-brand-green/25 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-70 disabled:hover:scale-100 disabled:cursor-not-allowed"
+                  className="w-full retro-btn py-4 text-lg"
                 >
                   {status.submitting ? (
                     'Sending...'
@@ -258,16 +258,29 @@ const Contact = () => {
           <SocialBadges />
         </div>
 
-        {/* Magic Name Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
-          className="mt-24"
-        >
-          <MagicName />
-        </motion.div>
+        {/* Retro Marquee Section */}
+        <div className="mt-24 overflow-hidden border-y-4 border-gray-900 dark:border-emerald-500 bg-emerald-400 dark:bg-emerald-500/10 py-4 -mx-4 sm:-mx-6 lg:-mx-8">
+          <motion.div
+            className="flex whitespace-nowrap gap-8 items-center"
+            animate={{ x: ["0%", "-50%"] }}
+            transition={{
+              repeat: Infinity,
+              ease: "linear",
+              duration: 15,
+            }}
+          >
+            {[...Array(10)].map((_, i) => (
+              <div key={i} className="flex items-center gap-8">
+                <span className="text-4xl font-mono font-black text-gray-900 dark:text-emerald-500 tracking-widest uppercase">
+                  HOZAIFA ALI
+                </span>
+                <span className="text-4xl font-mono text-gray-900 dark:text-emerald-500">
+                  ✦
+                </span>
+              </div>
+            ))}
+          </motion.div>
+        </div>
       </div>
     </section >
   )

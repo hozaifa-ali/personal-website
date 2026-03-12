@@ -13,6 +13,12 @@ export default {
           'green-dark': '#059669',
         },
       },
+      boxShadow: {
+        'premium-glass': '0 8px 32px 0 rgba(0, 0, 0, 0.05)',
+        'premium-glass-dark': '0 8px 32px 0 rgba(0, 0, 0, 0.4)',
+        'premium-hover': '0 20px 40px -10px rgba(16, 185, 129, 0.15)',
+        'premium-hover-dark': '0 20px 40px -10px rgba(16, 185, 129, 0.1)',
+      },
       animation: {
         'float': 'float 6s ease-in-out infinite',
         'glow': 'glow 2s ease-in-out infinite alternate',

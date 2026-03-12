@@ -61,20 +61,20 @@ const Navigation = () => {
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.2 }}
-        className="hidden md:fixed md:top-6 md:left-0 md:right-0 md:flex md:justify-center md:z-[100] pointer-events-none"
+        className="hidden md:block md:fixed md:top-0 md:left-0 md:right-0 md:z-[100]"
       >
-        <div className="relative pointer-events-auto">
+        <div className="relative">
           <nav
-            className={`transition-all duration-500 rounded-full border px-6 py-3 flex items-center gap-8 ${isScrolled
-              ? 'bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border-gray-200 dark:border-white/10 shadow-lg'
-              : 'bg-white/50 dark:bg-gray-900/50 backdrop-blur-md border-transparent shadow-sm'
+            className={`transition-all duration-300 border-b-4 border-gray-900 dark:border-emerald-500 px-8 py-3 flex items-center justify-between ${isScrolled
+              ? 'bg-[#f4f4f0] dark:bg-[#0a0a0a] shadow-[0px_6px_0px_rgba(17,24,39,1)] dark:shadow-[0px_6px_0px_rgba(16,185,129,0.5)]'
+              : 'bg-[#f4f4f0] dark:bg-[#111111]'
               }`}
           >
             {/* Logo */}
             <motion.a
               href="#home"
-              className="text-lg font-bold bg-gradient-to-r from-brand-green to-emerald-400 bg-clip-text text-transparent hover:opacity-80 transition-opacity"
-              whileHover={{ scale: 1.05 }}
+              className="text-lg font-mono font-bold text-gray-900 dark:text-white uppercase tracking-wider text-shadow-retro glitch-hover"
+              data-text="HOZAIFA ALI"
               whileTap={{ scale: 0.95 }}
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -99,20 +99,20 @@ const Navigation = () => {
                     <a
                       href={item.href}
                       onMouseEnter={() => setHoveredIndex(index)}
-                      className={`px-4 py-2 text-sm font-medium rounded-full transition-colors relative z-10 ${hoveredIndex === index || (isActive && hoveredIndex === null)
-                        ? 'text-brand-green dark:text-brand-green'
-                        : 'text-gray-700 dark:text-gray-300'
+                      className={`px-4 py-2 text-sm font-mono font-bold uppercase transition-colors relative z-10 ${hoveredIndex === index || (isActive && hoveredIndex === null)
+                        ? 'text-gray-900 dark:text-emerald-400'
+                        : 'text-gray-600 dark:text-gray-400'
                         }`}
                     >
                       {item.name}
                     </a>
 
-                    {/* Hover Pill */}
+                    {/* Hover Box */}
                     {hoveredIndex === index && (
                       <motion.div
                         layoutId="navbar-pill"
-                        className="absolute inset-0 bg-brand-green/10 dark:bg-brand-green/20 rounded-full -z-0"
-                        transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                        className="absolute inset-0 bg-emerald-400 dark:bg-gray-800 border-2 border-gray-900 dark:border-emerald-500 -z-0"
+                        transition={{ type: "spring", bounce: 0, duration: 0.2 }}
                       />
                     )}
 
@@ -120,8 +120,8 @@ const Navigation = () => {
                     {isActive && hoveredIndex === null && (
                       <motion.div
                         layoutId="navbar-pill"
-                        className="absolute inset-0 bg-brand-green/5 dark:bg-brand-green/10 rounded-full -z-0 border border-brand-green/20"
-                        transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                        className="absolute inset-x-2 bottom-0 h-1 bg-gray-900 dark:bg-emerald-500 -z-0"
+                        transition={{ type: "spring", bounce: 0, duration: 0.2 }}
                       />
                     )}
                   </motion.li>
@@ -130,26 +130,36 @@ const Navigation = () => {
             </ul>
 
             {/* Divider */}
-            <div className="w-px h-6 bg-gray-200 dark:bg-gray-700" />
+            <div className="w-0.5 h-6 bg-gray-900 dark:bg-emerald-500/50" />
 
             {/* Theme Toggle */}
             <motion.button
               onClick={toggleTheme}
-              className="p-2 rounded-full text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+              className="relative p-2.5 border-2 border-gray-900 dark:border-emerald-500 bg-emerald-400 dark:bg-[#111] text-gray-900 dark:text-emerald-400 hover:bg-emerald-500 dark:hover:bg-gray-800 shadow-[2px_2px_0px_rgba(17,24,39,1)] active:translate-y-[2px] active:translate-x-[2px] active:shadow-none transition-all duration-100 group"
               aria-label="Toggle theme"
-              whileHover={{ scale: 1.1, rotate: 20 }}
-              whileTap={{ scale: 0.9 }}
               initial={{ opacity: 0, scale: 0 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 1, type: "spring" }}
             >
-              {theme === 'light' ? <Moon size={18} /> : <Sun size={18} />}
+
+              <div className="relative z-10">
+                <motion.div
+                  initial={false}
+                  animate={{
+                    rotate: theme === 'dark' ? 360 : 0,
+                    scale: theme === 'dark' ? 1 : 0.8,
+                  }}
+                  transition={{ type: "spring", stiffness: 200, damping: 10 }}
+                >
+                  {theme === 'light' ? <Moon size={18} strokeWidth={2.5} /> : <Sun size={18} strokeWidth={2.5} />}
+                </motion.div>
+              </div>
             </motion.button>
           </nav>
 
           {/* Scroll Progress Bar */}
           <motion.div
-            className="absolute -bottom-1 left-6 right-6 h-0.5 bg-gradient-to-r from-transparent via-brand-green to-transparent origin-left rounded-full opacity-50"
+            className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-emerald-500 to-teal-400 origin-left"
             style={{ scaleX }}
           />
         </div>
@@ -165,29 +175,37 @@ const Navigation = () => {
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ type: "spring", stiffness: 100, damping: 20 }}
-        className={`md:hidden fixed top-0 left-0 right-0 z-40 transition-all duration-300 px-6 py-4 flex justify-between items-center bg-white/80 dark:bg-gray-950/80 backdrop-blur-lg border-b border-gray-100 dark:border-gray-800`}
+        className={`md:hidden fixed top-0 left-0 right-0 z-40 px-6 py-4 flex justify-between items-center bg-[#f4f4f0] dark:bg-[#0a0a0a] border-b-4 border-gray-900 dark:border-emerald-500 shadow-[0px_4px_0px_rgba(17,24,39,1)] dark:shadow-[0px_4px_0px_rgba(16,185,129,0.5)]`}
       >
-        <a href="#home" className="text-lg font-bold bg-gradient-to-r from-emerald-500 to-teal-500 bg-clip-text text-transparent">
-          HOZAIFA ALI
+        <a href="#home" className="text-xl font-mono font-bold text-gray-900 dark:text-white uppercase tracking-wider text-shadow-retro glitch-hover" data-text="HOZAIFA">
+          HOZAIFA
         </a>
-        <button
+        <motion.button
           onClick={toggleTheme}
-          className="p-2 rounded-lg bg-gray-100 dark:bg-gray-900 text-gray-700 dark:text-gray-300"
+          className="relative p-2.5 border-2 border-gray-900 dark:border-emerald-500 bg-emerald-400 dark:bg-[#111] text-gray-900 dark:text-emerald-400 hover:bg-emerald-500 dark:hover:bg-gray-800 shadow-[2px_2px_0px_rgba(17,24,39,1)] active:translate-y-[2px] active:translate-x-[2px] active:shadow-none transition-all duration-100 group"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
         >
-          {theme === 'light' ? <Moon size={20} /> : <Sun size={20} />}
-        </button>
+          <div className="relative z-10">
+            <motion.div
+              initial={false}
+              animate={{ rotate: theme === 'dark' ? 360 : 0 }}
+              transition={{ type: "spring", stiffness: 200, damping: 10 }}
+            >
+              {theme === 'light' ? <Moon size={20} strokeWidth={2.5} /> : <Sun size={20} strokeWidth={2.5} />}
+            </motion.div>
+          </div>
+        </motion.button>
       </motion.div>
 
-      {/* 2. Mobile Bottom Bar - Compact Rounded Pill Design */}
+      {/* 2. Mobile Bottom Bar - Brutalist Dock */}
       <motion.nav
         initial={{ y: 100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.2 }}
-        className="md:hidden fixed bottom-1 left-0 right-0 z-50 px-3 pb-3"
+        className="md:hidden fixed bottom-0 left-0 right-0 z-50 p-4 bg-[#f4f4f0] dark:bg-[#111111] border-t-4 border-gray-900 dark:border-emerald-500"
       >
-        <div className="relative bg-gradient-to-br from-white/80 via-white/70 to-white/60 dark:from-gray-900/80 dark:via-gray-900/70 dark:to-gray-900/60 backdrop-blur-3xl border-2 border-white/40 dark:border-white/20 rounded-full shadow-[0_8px_32px_rgba(0,0,0,0.12)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.5)] px-4 py-2.5">
-          {/* Subtle inner glow */}
-          <div className="absolute inset-0 rounded-full bg-gradient-to-t from-emerald-500/5 to-transparent pointer-events-none" />
+        <div className="relative px-2">
 
           <ul className="flex justify-around items-center relative z-10">
             {navItems.map((item) => {
@@ -198,20 +216,10 @@ const Navigation = () => {
                 <li key={item.name}>
                   <a
                     href={item.href}
-                    className={`group flex flex-col items-center gap-0.5 transition-all duration-300 px-2.5 py-1.5 rounded-full hover:bg-emerald-500/10 active:scale-90 transform relative ${isActive ? 'text-emerald-500 dark:text-emerald-400' : 'text-gray-600 dark:text-gray-400'}`}
+                    className={`group flex flex-col items-center gap-1 transition-all duration-100 px-3 py-2 border-2 border-transparent active:scale-95 transform relative ${isActive ? 'text-gray-900 dark:text-emerald-400 border-gray-900 dark:border-emerald-500 bg-emerald-400 dark:bg-gray-800 shadow-[2px_2px_0px_rgba(17,24,39,1)]' : 'text-gray-600 dark:text-gray-400 hover:border-gray-900 dark:hover:border-emerald-500 hover:bg-gray-200 dark:hover:bg-gray-800'}`}
                   >
-                    {/* Active Indicator Dot */}
-                    {isActive && (
-                      <motion.div
-                        layoutId="mobile-nav-indicator"
-                        className="absolute -top-1 w-1 h-1 rounded-full bg-emerald-500"
-                      />
-                    )}
-
-                    {/* Icon glow on hover */}
-                    <div className="absolute inset-0 rounded-full bg-emerald-500/0 group-hover:bg-emerald-500/5 blur-xl transition-all duration-300" />
-                    <Icon size={20} strokeWidth={isActive ? 2.5 : 2} className="relative z-10 group-hover:scale-110 transition-transform duration-300" />
-                    <span className="text-[9px] font-semibold tracking-wider relative z-10">{item.name}</span>
+                    <Icon size={22} strokeWidth={isActive ? 2.5 : 2} className="relative z-10 transition-transform duration-100" />
+                    <span className="text-[10px] font-mono font-bold tracking-wider relative z-10 uppercase">{item.name}</span>
                   </a>
                 </li>
               )

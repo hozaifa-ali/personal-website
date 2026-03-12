@@ -1,7 +1,10 @@
-import { useRef, useState } from 'react'
+import { useRef, useState, HTMLAttributes, ReactNode, MouseEvent } from 'react'
+import { motion, useMotionValue, useSpring, useTransform, MotionProps } from 'framer-motion'
 
-interface SpotlightCardProps extends React.HTMLAttributes<HTMLDivElement> {
-    children: React.ReactNode
+// Combine HTML attributes with Motion props, omitting conflicting ones
+type BaseProps = Omit<HTMLAttributes<HTMLDivElement>, keyof MotionProps>
+interface SpotlightCardProps extends BaseProps {
+    children: ReactNode
     className?: string
     spotlightColor?: string
 }
@@ -9,46 +12,46 @@ interface SpotlightCardProps extends React.HTMLAttributes<HTMLDivElement> {
 const SpotlightCard = ({
     children,
     className = "",
-    spotlightColor = "rgba(16, 185, 129, 0.15)", // Default to brand-green
     ...props
-}: SpotlightCardProps) => {
+}: SpotlightCardProps & MotionProps) => {
     const divRef = useRef<HTMLDivElement>(null)
-    const [position, setPosition] = useState({ x: 0, y: 0 })
-    const [opacity, setOpacity] = useState(0)
 
-    const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    // 3D Tilt Effect Springs
+    const x = useMotionValue(0)
+    const y = useMotionValue(0)
+    const mouseXSpring = useSpring(x, { damping: 20, stiffness: 300 })
+    const mouseYSpring = useSpring(y, { damping: 20, stiffness: 300 })
+
+    const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], [7, -7])
+    const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], [-7, 7])
+
+    const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
         if (!divRef.current) return
-
         const rect = divRef.current.getBoundingClientRect()
-        setPosition({ x: e.clientX - rect.left, y: e.clientY - rect.top })
-    }
 
-    const handleMouseEnter = () => {
-        setOpacity(1)
+        const normX = (e.clientX - rect.left) / rect.width - 0.5
+        const normY = (e.clientY - rect.top) / rect.height - 0.5
+        x.set(normX)
+        y.set(normY)
     }
 
     const handleMouseLeave = () => {
-        setOpacity(0)
+        x.set(0)
+        y.set(0)
     }
 
     return (
-        <div
+        <motion.div
             ref={divRef}
             onMouseMove={handleMouseMove}
-            onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
-            className={`relative overflow-hidden rounded-3xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 ${className}`}
+            style={{ rotateX, rotateY }}
+            initial={{ perspective: 1200 }}
+            className={`relative overflow-visible retro-card ${className}`}
             {...props}
         >
-            <div
-                className="pointer-events-none absolute -inset-px opacity-0 transition duration-300"
-                style={{
-                    opacity,
-                    background: `radial-gradient(600px circle at ${position.x}px ${position.y}px, ${spotlightColor}, transparent 40%)`,
-                }}
-            />
-            <div className="relative h-full">{children}</div>
-        </div>
+            <div className="relative h-full z-10">{children}</div>
+        </motion.div>
     )
 }
 

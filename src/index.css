@@ -2,139 +2,252 @@
 @tailwind components;
 @tailwind utilities;
 
-body::before {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 50;
-  opacity: 0.03;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-}
-
-@keyframes shimmer {
-  0% {
-    background-position: -1000px 0;
-  }
-
-  100% {
-    background-position: 1000px 0;
-  }
-}
-
-@keyframes gradient-shift {
-
-  0%,
-  100% {
-    background-position: 0% 50%;
-  }
-
-  50% {
-    background-position: 100% 50%;
-  }
-}
-
-@keyframes pulse-glow {
-
-  0%,
-  100% {
-    box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
-  }
-
-  50% {
-    box-shadow: 0 0 40px rgba(16, 185, 129, 0.6);
-  }
-}
-
 @layer base {
   body {
-    @apply bg-transparent text-gray-900 dark:text-white transition-colors duration-300;
+    @apply bg-[#f4f4f0] dark:bg-[#0d0d0d] text-gray-900 dark:text-[#f4f4f0] transition-colors duration-300;
     font-feature-settings: 'kern' 1;
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    /* Retro dot matrix background */
+    background-image: radial-gradient(rgba(16, 185, 129, 0.1) 2px, transparent 2px);
+    background-size: 32px 32px;
+    background-position: 0 0;
+  }
+
+  /* Global CRT Scanlines */
+  body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(to bottom,
+        rgba(255, 255, 255, 0),
+        rgba(255, 255, 255, 0) 50%,
+        rgba(0, 0, 0, 0.05) 50%,
+        rgba(0, 0, 0, 0.05));
+    background-size: 100% 4px;
+    pointer-events: none;
+    z-index: 9999;
+    /* overlay everything */
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-mono tracking-tight;
   }
 
   * {
     @apply scroll-smooth;
   }
+
+  /* Custom Retro Scrollbar */
+  ::-webkit-scrollbar {
+    width: 16px;
+    height: 16px;
+    background-color: #0d0d0d;
+    border-left: 2px solid rgba(16, 185, 129, 0.4);
+  }
+
+  .light ::-webkit-scrollbar {
+    background-color: #f4f4f0;
+    border-left: 2px solid #111;
+  }
+
+  ::-webkit-scrollbar-track {
+    background-image: linear-gradient(rgba(16, 185, 129, 0.1) 2px, transparent 2px),
+      linear-gradient(90deg, rgba(16, 185, 129, 0.1) 2px, transparent 2px);
+    background-size: 8px 8px;
+  }
+
+  .light ::-webkit-scrollbar-track {
+    background-image: linear-gradient(rgba(17, 24, 39, 0.05) 2px, transparent 2px),
+      linear-gradient(90deg, rgba(17, 24, 39, 0.05) 2px, transparent 2px);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: #10b981;
+    border: 2px solid #0d0d0d;
+    border-radius: 0;
+  }
+
+  .light ::-webkit-scrollbar-thumb {
+    background-color: #111;
+    border: 2px solid #f4f4f0;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #34d399;
+  }
+
+  .light ::-webkit-scrollbar-thumb:hover {
+    background-color: #374151;
+  }
 }
 
 @layer utilities {
-  .glass {
-    @apply bg-white/70 dark:bg-gray-900/50 backdrop-blur-xl border border-gray-200/50 dark:border-white/10;
+
+  /* Retro Brutalist Card */
+  .retro-card {
+    @apply bg-[#f4f4f0] dark:bg-[#111111] border-2 border-gray-900 dark:border-emerald-500;
+    box-shadow: 6px 6px 0px 0px rgba(16, 185, 129, 1);
+    transition: all 0.2s ease-out;
   }
 
-  .glass-strong {
-    @apply bg-white/95 dark:bg-gray-900/80 backdrop-blur-2xl border border-gray-200/60 dark:border-white/15 shadow-lg;
+  .retro-card:hover {
+    transform: translate(-4px, -4px);
+    box-shadow: 10px 10px 0px 0px rgba(16, 185, 129, 1);
   }
 
-  .card {
-    @apply bg-white dark:bg-gray-900/50 border border-gray-200/80 dark:border-gray-800/50 rounded-2xl shadow-sm dark:shadow-none backdrop-blur-sm;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  /* Retro Brutalist Button */
+  .retro-btn {
+    @apply inline-flex items-center justify-center font-mono font-bold uppercase tracking-wider border-2 border-gray-900 dark:border-emerald-500 bg-emerald-500 text-gray-900;
+    box-shadow: 4px 4px 0px 0px rgba(17, 24, 39, 1);
+    transition: all 0.1s ease-out;
   }
 
-  .card:hover {
-    @apply shadow-lg dark:shadow-none border-gray-300 dark:border-gray-700;
-    transform: translateY(-2px);
+  .dark .retro-btn {
+    box-shadow: 4px 4px 0px 0px rgba(16, 185, 129, 0.5);
   }
 
-  .shimmer {
-    background: linear-gradient(90deg, transparent, rgba(16, 185, 129, 0.3), transparent);
-    background-size: 1000px 100%;
-    animation: shimmer 2s infinite;
+  .retro-btn:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0px 0px rgba(17, 24, 39, 1);
   }
 
-  .gradient-text {
-    background: linear-gradient(135deg, #10b981, #6ee7b7, #10b981);
-    background-size: 200% 200%;
-    animation: gradient-shift 3s ease infinite;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+  .dark .retro-btn:hover {
+    box-shadow: 6px 6px 0px 0px rgba(16, 185, 129, 0.5);
   }
 
-  .pulse-glow {
-    animation: pulse-glow 2s ease-in-out infinite;
+  .retro-btn:active {
+    transform: translate(2px, 2px);
+    box-shadow: 0px 0px 0px 0px transparent;
   }
 
-  .fade-in-up {
-    animation: fadeInUp 0.6s ease-out;
+  /* Retro Text Effects */
+  .text-shadow-retro {
+    text-shadow: 3px 3px 0px rgba(16, 185, 129, 0.4);
   }
 
-  @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(30px);
-    }
-
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+  .dark .text-shadow-retro {
+    text-shadow: 3px 3px 0px rgba(16, 185, 129, 0.6);
   }
 
-  .hover-lift {
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  /* Retro Glitch Hover Effect */
+  .glitch-hover {
+    position: relative;
+    display: inline-block;
   }
 
-  .hover-lift:hover {
-    transform: translateY(-4px);
+  .glitch-hover:hover::before,
+  .glitch-hover:hover::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: inherit;
   }
 
-  .glow-border {
-    @apply relative;
+  .glitch-hover:hover::before {
+    left: 2px;
+    text-shadow: -1px 0 red;
+    animation: glitch-anim-1 2s infinite linear alternate-reverse;
   }
 
-  .glow-border::before {
-    content: '';
-    @apply absolute inset-0 bg-gradient-to-r from-brand-green to-emerald-400 rounded-2xl opacity-0 transition-opacity duration-300 -z-10;
+  .glitch-hover:hover::after {
+    left: -2px;
+    text-shadow: -1px 0 blue;
+    animation: glitch-anim-2 3s infinite linear alternate-reverse;
   }
 
-  .glow-border:hover::before {
-    @apply opacity-20;
+  /* Blinking Terminal Cursor */
+  .terminal-cursor::after {
+    content: '\2588';
+    /* Solid block character */
+    display: inline-block;
+    width: 1ch;
+    margin-left: 2px;
+    animation: terminal-blink 1s step-end infinite;
+    color: currentColor;
+    opacity: 0.8;
+  }
+
+  .terminal-cursor-focus:focus::after {
+    content: '\2588';
+    display: inline-block;
+    width: 1ch;
+    margin-left: 2px;
+    animation: terminal-blink 1s step-end infinite;
+    color: currentColor;
+    opacity: 0.8;
+  }
+}
+
+@keyframes terminal-blink {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes glitch-anim-1 {
+  0% {
+    clip-path: inset(20% 0 80% 0);
+  }
+
+  20% {
+    clip-path: inset(60% 0 10% 0);
+  }
+
+  40% {
+    clip-path: inset(40% 0 50% 0);
+  }
+
+  60% {
+    clip-path: inset(80% 0 5% 0);
+  }
+
+  80% {
+    clip-path: inset(10% 0 70% 0);
+  }
+
+  100% {
+    clip-path: inset(30% 0 50% 0);
+  }
+}
+
+@keyframes glitch-anim-2 {
+  0% {
+    clip-path: inset(10% 0 60% 0);
+  }
+
+  20% {
+    clip-path: inset(30% 0 20% 0);
+  }
+
+  40% {
+    clip-path: inset(70% 0 10% 0);
+  }
+
+  60% {
+    clip-path: inset(20% 0 50% 0);
+  }
+
+  80% {
+    clip-path: inset(50% 0 30% 0);
+  }
+
+  100% {
+    clip-path: inset(5% 0 80% 0);
   }
 }

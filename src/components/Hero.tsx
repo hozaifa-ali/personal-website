@@ -1,10 +1,39 @@
-import { motion } from 'framer-motion'
+import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
 import { ArrowDown } from 'lucide-react'
 import HeroSocials from './HeroSocials'
+import TextReveal from './TextReveal'
+import AnimatedHeroGraphic from './AnimatedHeroGraphic'
+import ScrambleText from './ScrambleText'
 
 const Hero = () => {
+  const x = useMotionValue(0)
+  const y = useMotionValue(0)
+  const springConfig = { damping: 20, stiffness: 150, mass: 0.5 }
+  const mouseXSpring = useSpring(x, springConfig)
+  const mouseYSpring = useSpring(y, springConfig)
+  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], [6, -6])
+  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], [-6, 6])
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    const rect = e.currentTarget.getBoundingClientRect()
+    const normX = (e.clientX - rect.left) / rect.width - 0.5
+    const normY = (e.clientY - rect.top) / rect.height - 0.5
+    x.set(normX)
+    y.set(normY)
+  }
+
+  const handleMouseLeave = () => {
+    x.set(0)
+    y.set(0)
+  }
+
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-24 pb-20 md:pt-12 bg-gradient-to-b from-gray-50/20 via-white/10 to-white/10 dark:from-gray-950/20 dark:via-black/10 dark:to-black/10 backdrop-blur-[2px]">
+    <section
+      id="home"
+      className="min-h-screen flex items-center justify-center relative overflow-hidden pt-24 pb-20 md:pt-12"
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+    >
       {/* Subtle background pattern */}
       <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05]">
         <div className="absolute inset-0" style={{
@@ -29,16 +58,16 @@ const Hero = () => {
                 transition={{ delay: 0.2, duration: 0.6 }}
                 className="text-brand-green font-mono text-xs tracking-[0.2em] uppercase font-medium"
               >
-                Software Engineer
+                <ScrambleText text="Software Engineer" delay={500} />
               </motion.p>
 
               <motion.h1
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3, duration: 0.8 }}
-                className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] text-gray-900 dark:text-white tracking-tight"
+                className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] text-gray-900 dark:text-white tracking-tight uppercase text-shadow-retro"
               >
-                <span className="block">Hi, I'm</span>
+                <span className="block glitch-hover w-fit" data-text="Hi, I'm">Hi, I'm</span>
                 <span className="block mt-2 relative z-20">
                   {"Hozaifa Ali".split('').map((letter, index) => (
                     <motion.span
@@ -58,48 +87,30 @@ const Hero = () => {
               </motion.h1>
             </div>
 
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5, duration: 0.8 }}
+            <TextReveal
+              text="Software Engineering student at UET Lahore, specializing in full-stack development and Web3 technologies. I build scalable applications and innovative blockchain solutions."
               className="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-300 leading-relaxed max-w-xl"
-            >
-              Software Engineering student at UET Lahore, specializing in full-stack development
-              and Web3 technologies. I build scalable applications and innovative blockchain solutions.
-            </motion.p>
+              delay={5}
+            />
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.7, duration: 0.8 }}
-              className="flex flex-wrap gap-4 pt-2"
+              className="flex flex-wrap gap-6 pt-4"
             >
-              <motion.a
-                href="#projects"
-                className="group inline-flex items-center gap-2 bg-brand-green hover:bg-brand-green-dark text-white font-semibold px-6 py-3.5 rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-brand-green/25 active:scale-[0.98] relative overflow-hidden"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <motion.div
-                  className="absolute inset-0 bg-white/0 group-hover:bg-white/10"
-                  transition={{ duration: 0.3 }}
-                />
-                View Projects
+              <a href="#projects" className="retro-btn px-8 py-4 text-sm sm:text-base group">
+                <span className="mr-2">View Projects</span>
                 <motion.div
                   animate={{ y: [0, 4, 0] }}
                   transition={{ duration: 2, repeat: Infinity }}
                 >
                   <ArrowDown size={18} />
                 </motion.div>
-              </motion.a>
-              <motion.a
-                href="#contact"
-                className="inline-flex items-center gap-2 glass-strong px-6 py-3.5 rounded-xl font-semibold text-gray-700 dark:text-white hover:border-brand-green/30 transition-all duration-300 active:scale-[0.98]"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.95 }}
-              >
+              </a>
+              <a href="#contact" className="px-8 py-4 text-sm sm:text-base font-mono font-bold uppercase tracking-wider border-2 border-gray-900 dark:border-gray-200 text-gray-900 dark:text-[#f4f4f0] transition-transform shadow-[4px_4px_0px_rgba(17,24,39,1)] dark:shadow-[4px_4px_0px_rgba(244,244,240,0.5)] hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[6px_6px_0px_rgba(17,24,39,1)] active:translate-y-1 active:translate-x-1 active:shadow-none bg-transparent">
                 Get In Touch
-              </motion.a>
+              </a>
             </motion.div>
 
             <motion.div
@@ -111,33 +122,16 @@ const Hero = () => {
             </motion.div>
           </motion.div>
 
-          {/* Right side - Professional Info Card */}
+          {/* Right side - Professional Info Card / SVG Animation */}
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
+            initial={{ opacity: 0, x: 50, perspective: 1000 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.4, duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
-            className="hidden lg:block"
+            style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
+            className="hidden lg:block relative z-20 w-full max-w-md mx-auto"
           >
-            <div className="glass-strong p-10 rounded-3xl border border-gray-200/60 dark:border-white/10 space-y-8 shadow-xl">
-              <div>
-                <h3 className="text-xs font-mono text-gray-400 dark:text-gray-500 uppercase tracking-[0.15em] mb-3 font-medium">Education</h3>
-                <p className="text-2xl font-bold text-gray-900 dark:text-white mb-1">Software Engineering</p>
-                <p className="text-gray-600 dark:text-gray-400">UET Lahore</p>
-              </div>
-
-              <div className="h-px bg-gradient-to-r from-transparent via-gray-200 dark:via-gray-800 to-transparent" />
-
-              <div>
-                <h3 className="text-xs font-mono text-gray-400 dark:text-gray-500 uppercase tracking-[0.15em] mb-4 font-medium">Focus Areas</h3>
-                <div className="space-y-3">
-                  {['Full-Stack Development', 'Web3 & Blockchain', 'Modern React Applications'].map((item, index) => (
-                    <div key={index} className="flex items-center gap-3">
-                      <div className="w-1.5 h-1.5 rounded-full bg-brand-green flex-shrink-0" />
-                      <span className="text-gray-700 dark:text-gray-300 font-medium">{item}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
+            <div className="relative z-10 w-full" style={{ transform: "translateZ(30px)" }}>
+              <AnimatedHeroGraphic />
             </div>
           </motion.div>
         </div>

@@ -1,184 +1,92 @@
 import { motion } from 'framer-motion'
-import { Heart } from 'lucide-react'
+import { GitFork, Star, Terminal } from 'lucide-react'
+import { useEffect, useState } from 'react'
+import TerminalEasterEgg from './TerminalEasterEgg'
 
 const Footer = () => {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.3,
-      },
-    },
-  }
-
-  const letterVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: [0.23, 1, 0.32, 1],
-      },
-    },
-  }
-
   const endText = "END"
+  const [repoData, setRepoData] = useState({ stars: 0, forks: 0 })
+
+  useEffect(() => {
+    fetch('https://api.github.com/repos/hozi8-web3/personal-website')
+      .then(res => res.json())
+      .then(data => {
+        if (data && data.stargazers_count !== undefined) {
+          setRepoData({
+            stars: data.stargazers_count,
+            forks: data.forks_count
+          })
+        }
+      })
+      .catch(err => console.error("Could not fetch repo data:", err))
+  }, [])
 
   return (
-    <footer className="relative bg-gradient-to-t from-gray-950 to-black dark:from-black dark:to-gray-900 overflow-hidden py-20 sm:py-24 md:py-32">
-      {/* Animated background elements */}
-      <div className="absolute inset-0">
-        <motion.div
-          className="absolute top-0 left-1/4 w-96 h-96 bg-brand-green/10 rounded-full blur-3xl"
-          animate={{
-            x: [0, 100, -100, 0],
-            y: [0, -100, 100, 0],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
-        <motion.div
-          className="absolute bottom-0 right-1/4 w-80 h-80 bg-brand-green/5 rounded-full blur-3xl"
-          animate={{
-            x: [0, -100, 100, 0],
-            y: [0, 100, -100, 0],
-          }}
-          transition={{
-            duration: 25,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
-      </div>
+    <footer className="relative bg-[#f4f4f0] dark:bg-[#0a0a0a] border-t-8 border-gray-900 dark:border-emerald-500 overflow-hidden py-16 pb-32 md:pb-16 retro-card rounded-none">
+      {/* Background Grid */}
+      <div className="absolute inset-0 opacity-10 dark:opacity-20 pointer-events-none"
+        style={{
+          backgroundImage: `linear-gradient(rgba(16, 185, 129, 0.8) 2px, transparent 2px), linear-gradient(90deg, rgba(16, 185, 129, 0.8) 2px, transparent 2px)`,
+          backgroundSize: '40px 40px',
+          backgroundPosition: '0 0'
+        }}
+      />
 
       <div className="container mx-auto px-4 sm:px-6 max-w-7xl relative z-10">
-        <div className="text-center space-y-8 sm:space-y-12">
-          {/* END Text */}
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            className="flex justify-center gap-3 sm:gap-4 md:gap-6 group cursor-pointer"
-          >
-            {endText.split('').map((letter, index) => (
-              <motion.div
-                key={index}
-                variants={letterVariants}
-                className="relative"
-                whileHover={{ scale: 1.15, y: -12, rotateZ: 5 }}
-                transition={{ type: "spring", stiffness: 400, damping: 10 }}
-              >
-                {/* Glow effect on hover */}
-                <motion.div
-                  className="absolute inset-0 bg-brand-green/30 rounded-lg blur-xl -z-10"
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileHover={{ opacity: 1, scale: 1.4 }}
-                  transition={{ duration: 0.3 }}
-                />
+        <div className="text-center flex flex-col items-center justify-center gap-8">
 
-                <span className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-white drop-shadow-lg group-hover:drop-shadow-[0_0_30px_rgba(16,185,129,0.8)] transition-all">
-                  {letter}
-                </span>
-              </motion.div>
-            ))}
+          {/* END Banner */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="inline-block border-4 border-gray-900 dark:border-emerald-500 bg-gray-900 dark:bg-emerald-500 px-8 py-4 shadow-[8px_8px_0px_rgba(16,185,129,1)] dark:shadow-[8px_8px_0px_rgba(244,244,240,0.8)]"
+          >
+            <span className="text-4xl sm:text-5xl md:text-6xl font-mono font-black text-[#f4f4f0] dark:text-gray-900 tracking-widest uppercase">
+              {endText}
+            </span>
           </motion.div>
 
-          {/* Divider with animation */}
+          {/* Divider */}
+          <div className="w-full max-w-md h-2 bg-gray-900 dark:bg-emerald-500/50 mt-4" />
+
+          {/* Interactive Terminal Easter Egg */}
           <motion.div
-            initial={{ width: 0 }}
-            whileInView={{ width: '100%' }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 1, ease: "easeInOut" }}
-            className="max-w-xs mx-auto group cursor-pointer"
-            whileHover={{ scale: 1.1 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="w-full max-w-3xl mx-auto"
           >
-            <motion.div
-              className="h-1 bg-gradient-to-r from-transparent via-brand-green to-transparent group-hover:shadow-[0_0_20px_rgba(16,185,129,0.8)]"
-              whileHover={{ height: 3 }}
-              transition={{ duration: 0.3 }}
-            />
+            <TerminalEasterEgg />
           </motion.div>
 
-          {/* Message with heart animation */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="flex items-center justify-center gap-2 text-gray-300 group hover:text-brand-green transition-colors cursor-pointer"
-          >
-            <span className="text-sm sm:text-base md:text-lg group-hover:scale-105 transition-transform">Made with</span>
-            <motion.div
-              animate={{ scale: [1, 1.2, 1] }}
-              transition={{ duration: 0.6, repeat: Infinity }}
-              whileHover={{ rotate: 360, scale: 1.3 }}
-            >
-              <Heart className="text-brand-green fill-brand-green group-hover:drop-shadow-[0_0_15px_rgba(16,185,129,0.8)]" size={24} />
-            </motion.div>
-            <span className="text-sm sm:text-base md:text-lg group-hover:scale-105 transition-transform">by Hozaifa Ali</span>
-          </motion.div>
-
-          {/* Year */}
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, delay: 0.8 }}
-            className="text-gray-400 text-xs sm:text-sm md:text-base font-mono tracking-wider"
-          >
-            © {new Date().getFullYear()} All rights reserved.
-          </motion.p>
-
-          {/* Decorative elements */}
+          {/* Year & License & Repo Stats */}
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 1, delay: 1 }}
-            className="flex justify-center gap-2 text-brand-green text-2xl group cursor-pointer"
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="flex flex-col items-center gap-4 mt-4"
           >
-            {[...Array(5)].map((_, i) => (
-              <motion.div
-                key={i}
-                animate={{ y: [0, -10, 0] }}
-                transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                  delay: i * 0.2,
-                }}
-                whileHover={{ scale: 1.3, rotate: 180 }}
-                className="relative"
-              >
-                <motion.div
-                  className="absolute inset-0 bg-brand-green/20 rounded-full blur-md -z-10"
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileHover={{ opacity: 1, scale: 1.5 }}
-                  transition={{ duration: 0.3 }}
-                />
-                ✦
-              </motion.div>
-            ))}
+            <p className="text-gray-900 dark:text-emerald-500 font-mono font-bold tracking-widest uppercase bg-[#f4f4f0] dark:bg-[#111] px-4 py-2 border-2 border-gray-900 dark:border-emerald-500">
+              SYSTEM HALTED © {new Date().getFullYear()}
+            </p>
+
+            {/* Simulated Repo Status Bar */}
+            <div className="flex flex-wrap justify-center gap-4 text-xs sm:text-sm font-mono font-bold text-gray-700 dark:text-emerald-400 mt-2">
+              <span className="flex items-center gap-2 border-2 border-gray-900 dark:border-emerald-500 px-3 py-1 bg-white dark:bg-black">
+                <Terminal size={14} /> MIT LICENSED
+              </span>
+              <a href="https://github.com/hozi8-web3/personal-website" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 border-2 border-gray-900 dark:border-emerald-500 px-3 py-1 bg-white dark:bg-black hover:bg-emerald-400 hover:text-gray-900 dark:hover:bg-emerald-500 dark:hover:text-[#0a0a0a] transition-colors cursor-pointer">
+                <Star size={14} /> DESIGN_STARS: {repoData.stars > 0 ? repoData.stars : '99+'}
+              </a>
+              <a href="https://github.com/hozi8-web3/personal-website/fork" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 border-2 border-gray-900 dark:border-emerald-500 px-3 py-1 bg-white dark:bg-black hover:bg-emerald-400 hover:text-gray-900 dark:hover:bg-emerald-500 dark:hover:text-[#0a0a0a] transition-colors cursor-pointer">
+                <GitFork size={14} /> FORKS: {repoData.forks > 0 ? repoData.forks : 'REQUIRED'}
+              </a>
+            </div>
           </motion.div>
         </div>
       </div>
-
-      {/* Scroll indicator */}
-      <motion.div
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-        animate={{ y: [0, 10, 0] }}
-        transition={{ duration: 2, repeat: Infinity }}
-      >
-        <div className="text-center text-gray-400">
-          <p className="text-xs font-mono tracking-widest">~ END ~</p>
-        </div>
-      </motion.div>
     </footer>
   )
 }
