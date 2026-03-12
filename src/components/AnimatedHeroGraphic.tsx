@@ -44,7 +44,7 @@ const AnimatedHeroGraphic = () => {
                 <div className="flex-1 p-4 sm:p-6 lg:p-8 flex flex-col gap-4">
                     {/* Top Full: Live ASCII Wireframe */}
                     <div className="border-2 border-gray-900 dark:border-emerald-500/50 flex-1 relative overflow-hidden bg-white dark:bg-[#111]">
-                        <AsciiImage imageUrl="assets/hozi.jpeg" cols={70} />
+                        <AsciiImage imageUrl="/hozi.jpeg" cols={70} />
                     </div>
 
                     {/* Bottom Full: Data Readout Panel */}
