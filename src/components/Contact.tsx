@@ -24,8 +24,7 @@ const Contact = () => {
 
     setStatus({ submitting: true, succeeded: false, errors: [] })
 
-    // REPLACE THIS URL WITH YOUR OWN FORMSPREE ENDPOINT
-    // Example: https://formspree.io/f/xyzkqwer
+    // Formspree form endpoint
     const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mpqwakjp'
 
     try {
@@ -63,8 +62,8 @@ const Contact = () => {
     {
       icon: <Github className="text-brand-green" size={20} />,
       label: 'GitHub',
-      value: 'hozi8-web3',
-      link: 'https://github.com/hozi8-web3',
+      value: 'hozaifa-ali',
+      link: 'https://github.com/hozaifa-ali',
     },
     {
       icon: <MapPin className="text-brand-green" size={20} />,

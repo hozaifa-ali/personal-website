@@ -6,7 +6,7 @@ const HeroSocials = () => {
         {
             name: 'GitHub',
             icon: Github,
-            url: 'https://github.com/hozi8-web3',
+            url: 'https://github.com/hozaifa-ali',
             color: 'hover:text-[#2dba4e]',
             bg: 'hover:bg-[#2dba4e]/10',
             border: 'hover:border-[#2dba4e]/50'

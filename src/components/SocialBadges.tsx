@@ -21,7 +21,7 @@ const SocialBadges = () => {
 
     useEffect(() => {
         // Fetch GitHub Data
-        fetch('https://api.github.com/users/hozi8-web3')
+        fetch('https://api.github.com/users/hozaifa-ali')
             .then(res => res.json())
             .then(data => {
                 setGithubData(data);
@@ -35,10 +35,10 @@ const SocialBadges = () => {
 
     const linkedinProfile = {
         name: "Muhammad Hozaifa Ali",
-        title: "Software Engineer | Full Stack Developer",
+        title: "Software Engineer | Full Stack & Backend Developer",
         location: "Lahore, Pakistan",
         url: "https://pk.linkedin.com/in/m-hozaifa-ali",
-        avatar: githubData?.avatar_url || "https://dummyimage.com/400x400/0077b5/ffffff&text=MA" // Fallback to initial if GitHub not loaded
+        avatar: githubData?.avatar_url || "/hozi.jpeg"
     };
 
     return (
@@ -150,7 +150,7 @@ const SocialBadges = () => {
                                 </div>
 
                                 <p className="text-gray-600 dark:text-gray-300 text-sm mb-4 line-clamp-2 min-h-[40px] flex-1">
-                                    {githubData.bio || "Full Stack Developer"}
+                                    {githubData.bio || "Software Engineer | Full Stack & Backend Developer"}
                                 </p>
 
                                 <div className="grid grid-cols-3 gap-2 py-3 border-t border-gray-200 dark:border-white/10 border-b mb-3">

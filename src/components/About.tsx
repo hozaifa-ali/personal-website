@@ -5,11 +5,12 @@ import SkillsMarquee from './SkillsMarquee'
 
 const About = () => {
   const skills = [
-    { category: 'Frontend', items: ['React', 'TypeScript', 'Next.js', 'Tailwind CSS', 'Framer Motion'] },
-    { category: 'Backend', items: ['Node.js', 'Express', 'REST APIs', 'GraphQL'] },
-    { category: 'Database', items: ['MongoDB', 'PostgreSQL', 'Redis'] },
-    { category: 'Web3', items: ['Solidity', 'Ethereum', 'Smart Contracts', 'Web3.js'] },
-    { category: 'Tools', items: ['Git', 'Docker', 'AWS', 'CI/CD', 'Jest'] },
+    { category: 'Languages', items: ['JavaScript', 'TypeScript', 'Python', 'Go', 'Solidity'] },
+    { category: 'Frontend', items: ['React', 'Next.js', 'Tailwind CSS', 'Flutter'] },
+    { category: 'Backend', items: ['Node.js', 'Express', 'FastAPI', 'Django', 'GraphQL'] },
+    { category: 'Databases', items: ['PostgreSQL', 'MongoDB', 'Redis', 'Firebase'] },
+    { category: 'DevOps & Cloud', items: ['Docker', 'GitHub Actions', 'Nginx', 'Linux', 'CI/CD'] },
+    { category: 'Cloud (Learning)', items: ['AWS', 'GCP'] },
   ]
 
   const experience = [
@@ -22,10 +23,10 @@ const About = () => {
     },
     {
       icon: <Code className="text-brand-green" size={22} />,
-      title: 'Full-Stack Developer',
-      institution: 'Freelance',
+      title: 'Software Engineer',
+      institution: 'Freelance & Open Source',
       period: '2023 - Present',
-      description: 'Developing scalable web applications and decentralized solutions. Specialized in React, Node.js, and blockchain technologies.',
+      description: 'Building full-stack web applications, backend services, and cross-platform mobile apps. Specialized in React, Node.js, Python, and Flutter.',
     },
   ]
 
@@ -64,9 +65,9 @@ const About = () => {
           </div>
           <p className="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-4xl leading-relaxed">
             I'm Hozaifa Ali, a Software Engineering student at UET Lahore with a passion for building
-            innovative solutions. My expertise spans full-stack web development, with a particular
-            focus on Web3 technologies and modern React applications. I enjoy solving complex problems
-            and creating user-centric applications that make a difference.
+            scalable software. My expertise spans full-stack development, backend systems, DevOps, and
+            cross-platform mobile development with Flutter. I enjoy solving complex problems
+            and shipping clean, production-ready applications.
           </p>
         </motion.div>
 

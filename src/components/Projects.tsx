@@ -25,31 +25,7 @@ const Projects = ({ githubData }: ProjectsProps) => {
   const featuredProjects = [
     ...githubData.repositories
       .filter((repo) => repo.visibility === 'public' && repo.description)
-      .slice(0, 3),
-    {
-      name: 'Enterprise Dashboard Platform',
-      full_name: 'hozi8-web3/enterprise-dashboard',
-      description: 'A comprehensive enterprise dashboard with real-time analytics, user management, and advanced reporting features. Built with React, TypeScript, and microservices architecture.',
-      language: 'TypeScript',
-      homepage: 'https://enterprise-dashboard-demo.vercel.app',
-      html_url: 'https://github.com/hozi8-web3/enterprise-dashboard',
-      stars: 12,
-      forks: 3,
-      pushed_at: new Date().toISOString(),
-      visibility: 'public',
-    },
-    {
-      name: 'AI-Powered Code Review System',
-      full_name: 'hozi8-web3/ai-code-review',
-      description: 'An intelligent code review platform that uses machine learning to analyze code quality, suggest improvements, and detect potential bugs. Integrates with GitHub and GitLab.',
-      language: 'Python',
-      homepage: 'https://ai-code-review.vercel.app',
-      html_url: 'https://github.com/hozi8-web3/ai-code-review',
-      stars: 28,
-      forks: 7,
-      pushed_at: new Date().toISOString(),
-      visibility: 'public',
-    },
+      .slice(0, 6),
   ]
 
   const getLanguageColor = (language: string | null) => {
@@ -60,6 +36,12 @@ const Projects = ({ githubData }: ProjectsProps) => {
       HTML: '#e34c26',
       CSS: '#1572b6',
       Solidity: '#363636',
+      Rust: '#dea584',
+      C: '#555555',
+      'C#': '#239120',
+      'C++': '#f34b7d',
+      Go: '#00ADD8',
+      Dart: '#0175C2',
     }
     return colors[language || ''] || '#10b981'
   }
@@ -107,7 +89,7 @@ const Projects = ({ githubData }: ProjectsProps) => {
             <div className="h-1 flex-1 max-w-24 bg-gray-900 dark:bg-emerald-500" />
           </div>
           <p className="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-4xl">
-            A selection of projects showcasing my expertise in full-stack development, Web3 technologies, and modern web applications.
+            A selection of projects showcasing my expertise in full-stack development, systems programming, and modern web applications.
           </p>
         </motion.div>
 
@@ -179,7 +161,7 @@ const Projects = ({ githubData }: ProjectsProps) => {
                             target="_blank"
                             rel="noopener noreferrer"
                             className="p-2 rounded-full text-gray-500 hover:text-brand-green hover:bg-brand-green/10 transition-colors"
-                            aria-label="GitHub"
+                            aria-label={`View ${project.name} on GitHub`}
                           >
                             <Github size={isFeatured ? 24 : 20} />
                           </a>
@@ -188,7 +170,7 @@ const Projects = ({ githubData }: ProjectsProps) => {
                     </div>
 
                     <p className={`text-gray-700 dark:text-gray-300 font-mono leading-relaxed mb-6 ${isFeatured ? 'text-lg md:text-xl line-clamp-4' : 'text-sm line-clamp-3'}`}>
-                      {project.description || 'A professional project showcasing modern development practices.'}
+                      {project.description || 'Exploring new technologies and building innovative solutions.'}
                     </p>
 
                     <div className={`mt-auto pt-6 border-t border-gray-100 dark:border-gray-800/50 flex items-center justify-between ${isFeatured ? 'flex-row' : 'flex-col sm:flex-row gap-4 sm:gap-0'}`}>
@@ -230,7 +212,7 @@ const Projects = ({ githubData }: ProjectsProps) => {
           className="text-center mt-16"
         >
           <a
-            href="https://github.com/hozi8-web3"
+            href="https://github.com/hozaifa-ali"
             target="_blank"
             rel="noopener noreferrer"
             className="group inline-flex items-center gap-2 text-brand-green hover:text-brand-green-dark font-semibold transition-colors"

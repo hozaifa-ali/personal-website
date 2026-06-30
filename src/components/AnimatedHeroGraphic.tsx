@@ -67,9 +67,9 @@ const AnimatedHeroGraphic = () => {
                             <div className="text-gray-300 dark:text-gray-400 font-mono text-[10px] xl:text-xs">
                                 <span className="text-white">Full-Stack Development</span>
                                 <br />
-                                Web3 & Blockchain
+                                Backend & DevOps
                                 <br />
-                                Modern React Applications
+                                Cross-Platform Mobile
                             </div>
                         </div>
                     </div>

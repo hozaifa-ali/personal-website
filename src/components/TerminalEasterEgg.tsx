@@ -30,7 +30,7 @@ const TerminalEasterEgg = () => {
                 response = 'USER: HOZAIFA ALI | ROLE: FULL STACK ENGINEER | STATUS: ONLINE';
                 break;
             case 'stack':
-                response = 'CORE_STACK: [REACT, TAILWIND, TYPESCRIPT, NODE.JS, WEB3]';
+                response = 'CORE_STACK: [REACT, NEXT.JS, TYPESCRIPT, PYTHON, GO, FLUTTER, NODE.JS, DOCKER]';
                 break;
             case 'ping':
                 response = 'PONG! CONNECTION_LATENCY: 12ms';

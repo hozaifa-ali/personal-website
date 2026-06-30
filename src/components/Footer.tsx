@@ -8,7 +8,7 @@ const Footer = () => {
   const [repoData, setRepoData] = useState({ stars: 0, forks: 0 })
 
   useEffect(() => {
-    fetch('https://api.github.com/repos/hozi8-web3/personal-website')
+    fetch('https://api.github.com/repos/hozaifa-ali/personal-website')
       .then(res => res.json())
       .then(data => {
         if (data && data.stargazers_count !== undefined) {
@@ -77,11 +77,11 @@ const Footer = () => {
               <span className="flex items-center gap-2 border-2 border-gray-900 dark:border-emerald-500 px-3 py-1 bg-white dark:bg-black">
                 <Terminal size={14} /> MIT LICENSED
               </span>
-              <a href="https://github.com/hozi8-web3/personal-website" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 border-2 border-gray-900 dark:border-emerald-500 px-3 py-1 bg-white dark:bg-black hover:bg-emerald-400 hover:text-gray-900 dark:hover:bg-emerald-500 dark:hover:text-[#0a0a0a] transition-colors cursor-pointer">
-                <Star size={14} /> DESIGN_STARS: {repoData.stars > 0 ? repoData.stars : '99+'}
+              <a href="https://github.com/hozaifa-ali/personal-website" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 border-2 border-gray-900 dark:border-emerald-500 px-3 py-1 bg-white dark:bg-black hover:bg-emerald-400 hover:text-gray-900 dark:hover:bg-emerald-500 dark:hover:text-[#0a0a0a] transition-colors cursor-pointer">
+                <Star size={14} /> DESIGN_STARS: {repoData.stars > 0 ? repoData.stars : '—'}
               </a>
-              <a href="https://github.com/hozi8-web3/personal-website/fork" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 border-2 border-gray-900 dark:border-emerald-500 px-3 py-1 bg-white dark:bg-black hover:bg-emerald-400 hover:text-gray-900 dark:hover:bg-emerald-500 dark:hover:text-[#0a0a0a] transition-colors cursor-pointer">
-                <GitFork size={14} /> FORKS: {repoData.forks > 0 ? repoData.forks : 'REQUIRED'}
+              <a href="https://github.com/hozaifa-ali/personal-website/fork" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 border-2 border-gray-900 dark:border-emerald-500 px-3 py-1 bg-white dark:bg-black hover:bg-emerald-400 hover:text-gray-900 dark:hover:bg-emerald-500 dark:hover:text-[#0a0a0a] transition-colors cursor-pointer">
+                <GitFork size={14} /> FORKS: {repoData.forks > 0 ? repoData.forks : '—'}
               </a>
             </div>
           </motion.div>

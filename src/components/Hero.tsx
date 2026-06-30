@@ -88,7 +88,7 @@ const Hero = () => {
             </div>
 
             <TextReveal
-              text="Software Engineering student at UET Lahore, specializing in full-stack development and Web3 technologies. I build scalable applications and innovative blockchain solutions."
+              text="Software Engineering student at UET Lahore, specializing in full-stack development, backend systems, and cross-platform applications. I build scalable, production-ready software with modern tools and best practices."
               className="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-300 leading-relaxed max-w-xl"
               delay={5}
             />
@@ -110,6 +110,10 @@ const Hero = () => {
               </a>
               <a href="#contact" className="px-8 py-4 text-sm sm:text-base font-mono font-bold uppercase tracking-wider border-2 border-gray-900 dark:border-gray-200 text-gray-900 dark:text-[#f4f4f0] transition-transform shadow-[4px_4px_0px_rgba(17,24,39,1)] dark:shadow-[4px_4px_0px_rgba(244,244,240,0.5)] hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[6px_6px_0px_rgba(17,24,39,1)] active:translate-y-1 active:translate-x-1 active:shadow-none bg-transparent">
                 Get In Touch
+              </a>
+              {/* Resume Button — Hidden for now. To enable: remove the 'hidden' class and add your resume URL */}
+              <a href="#" className="hidden px-8 py-4 text-sm sm:text-base font-mono font-bold uppercase tracking-wider border-2 border-emerald-500 text-emerald-600 dark:text-emerald-400 transition-transform shadow-[4px_4px_0px_rgba(16,185,129,1)] hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[6px_6px_0px_rgba(16,185,129,1)] active:translate-y-1 active:translate-x-1 active:shadow-none bg-transparent" target="_blank" rel="noopener noreferrer">
+                Resume ↗
               </a>
             </motion.div>
 

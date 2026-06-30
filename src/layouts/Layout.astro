@@ -5,17 +5,44 @@ interface Props {
 
 const { title } = Astro.props;
 import '../index.css';
+
+const siteUrl = 'https://devhozaifa.vercel.app';
+const description = 'Hozaifa Ali — Software Engineer specializing in full-stack development, backend systems, DevOps, and Flutter. Building scalable applications with React, Next.js, TypeScript, Python, Go, and more.';
+const ogImage = `${siteUrl}/hozi.jpeg`;
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="description" content="Hozaifa Ali - Software Engineer Portfolio" />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/vite.svg" />
 		<meta name="generator" content={Astro.generator} />
+
+		<!-- Primary Meta Tags -->
 		<title>{title}</title>
+		<meta name="title" content={title} />
+		<meta name="description" content={description} />
+		<meta name="author" content="Hozaifa Ali" />
+		<meta name="keywords" content="Software Engineer, Backend Developer, Flutter Developer, DevOps, Full Stack Developer, React, Next.js, TypeScript, Python, Go, Node.js, Hozaifa Ali" />
+		<link rel="canonical" href={siteUrl} />
+
+		<!-- Favicon -->
+		<link rel="icon" type="image/jpeg" href="/hozi.jpeg" />
+
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={siteUrl} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={ogImage} />
+		<meta property="og:site_name" content="Hozaifa Ali Portfolio" />
+
+		<!-- Twitter -->
+		<meta property="twitter:card" content="summary_large_image" />
+		<meta property="twitter:url" content={siteUrl} />
+		<meta property="twitter:title" content={title} />
+		<meta property="twitter:description" content={description} />
+		<meta property="twitter:image" content={ogImage} />
 	</head>
 	<body class="bg-transparent text-gray-900 dark:text-white transition-colors duration-300">
 		<slot />
