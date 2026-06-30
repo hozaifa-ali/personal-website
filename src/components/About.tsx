@@ -2,6 +2,8 @@ import { motion, useScroll, useTransform } from 'framer-motion'
 import { Code, GraduationCap, CheckCircle2 } from 'lucide-react'
 import { useRef } from 'react'
 import SkillsMarquee from './SkillsMarquee'
+import SkillsRadar from './SkillsRadar'
+import GitHubHeatmap from './GitHubHeatmap'
 
 const About = () => {
   const skills = [
@@ -38,8 +40,6 @@ const About = () => {
 
   // Parallax values
   const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"])
-  const contentY1 = useTransform(scrollYProgress, [0, 1], ["0%", "-5%"])
-  const contentY2 = useTransform(scrollYProgress, [0, 1], ["0%", "-10%"])
 
   return (
     <section ref={containerRef} id="about" className="py-16 sm:py-24 md:py-32 relative bg-white/10 dark:bg-gray-950/10 backdrop-blur-[2px] overflow-hidden">
@@ -74,7 +74,6 @@ const About = () => {
         <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 mb-12 sm:mb-16 md:mb-24">
           {/* Experience & Education */}
           <motion.div
-            style={{ y: contentY1 }}
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
@@ -107,7 +106,6 @@ const About = () => {
 
           {/* Skills */}
           <motion.div
-            style={{ y: contentY2 }}
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
@@ -115,6 +113,11 @@ const About = () => {
             className="space-y-10"
           >
             <h3 className="text-2xl font-mono font-bold text-gray-900 dark:text-white mb-8 uppercase text-shadow-retro">Technical Skills</h3>
+            
+            <div className="mb-10">
+              <SkillsRadar />
+            </div>
+
             <div className="space-y-5">
               {skills.map((skillGroup, index) => (
                 <motion.div
@@ -148,6 +151,9 @@ const About = () => {
             <SkillsMarquee />
           </div>
         </div>
+
+        {/* GitHub Heatmap */}
+        <GitHubHeatmap />
 
         {/* Values / Approach */}
         <motion.div

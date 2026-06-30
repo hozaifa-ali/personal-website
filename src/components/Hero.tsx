@@ -4,6 +4,7 @@ import HeroSocials from './HeroSocials'
 import TextReveal from './TextReveal'
 import AnimatedHeroGraphic from './AnimatedHeroGraphic'
 import ScrambleText from './ScrambleText'
+import AvailabilityBadge from './AvailabilityBadge'
 
 const Hero = () => {
   const x = useMotionValue(0)
@@ -60,6 +61,8 @@ const Hero = () => {
               >
                 <ScrambleText text="Software Engineer" delay={500} />
               </motion.p>
+              
+              <AvailabilityBadge />
 
               <motion.h1
                 initial={{ opacity: 0, y: 20 }}

@@ -21,7 +21,7 @@ export const githubData = {
       forks: 0,
       pushed_at: "2026-02-01T20:56:38Z",
       size_kb: 137,
-      topics: [],
+      topics: ['Authentication', 'JWT', 'Security', 'Express'],
       visibility: "public"
     },
     {
@@ -36,7 +36,7 @@ export const githubData = {
       forks: 0,
       pushed_at: "2026-06-29T10:14:57Z",
       size_kb: 2033,
-      topics: [],
+      topics: ['Networking', 'Rate Limiting', 'Systems'],
       visibility: "public"
     },
     {
@@ -51,7 +51,7 @@ export const githubData = {
       forks: 0,
       pushed_at: "2026-06-30T14:01:15Z",
       size_kb: 68,
-      topics: [],
+      topics: ['x86', 'OS Dev', 'Low Level'],
       visibility: "public"
     },
     {
@@ -66,7 +66,7 @@ export const githubData = {
       forks: 0,
       pushed_at: "2025-12-08T17:22:32Z",
       size_kb: 273,
-      topics: [],
+      topics: ['Web3', 'Shardeum', 'Smart Contracts'],
       visibility: "public"
     },
     {
@@ -81,7 +81,7 @@ export const githubData = {
       forks: 0,
       pushed_at: "2025-10-14T05:33:45Z",
       size_kb: 551,
-      topics: [],
+      topics: ['Web3', 'MongoDB', 'Next.js'],
       visibility: "public"
     },
     {
@@ -96,7 +96,7 @@ export const githubData = {
       forks: 0,
       pushed_at: "2025-10-07T15:32:08Z",
       size_kb: 813,
-      topics: [],
+      topics: ['ERC-20', 'No-code', 'DApp'],
       visibility: "public"
     },
     {
@@ -111,7 +111,7 @@ export const githubData = {
       forks: 0,
       pushed_at: "2025-08-31T06:37:59Z",
       size_kb: 32,
-      topics: [],
+      topics: ['Weather API', 'React', 'Animations'],
       visibility: "public"
     },
     {
@@ -126,7 +126,7 @@ export const githubData = {
       forks: 2,
       pushed_at: "2026-05-17T12:57:04Z",
       size_kb: 69108,
-      topics: [],
+      topics: ['Desktop App', 'WPF', 'Bracket Generator'],
       visibility: "public"
     },
     {
@@ -141,7 +141,7 @@ export const githubData = {
       forks: 0,
       pushed_at: "2026-05-11T18:23:08Z",
       size_kb: 205,
-      topics: [],
+      topics: ['CRM', 'Automation', 'Email'],
       visibility: "public"
     },
     {
@@ -156,7 +156,7 @@ export const githubData = {
       forks: 0,
       pushed_at: "2026-03-20T19:31:43Z",
       size_kb: 107,
-      topics: [],
+      topics: ['Trading', 'Algorithm', 'Analytics'],
       visibility: "public"
     },
   ]

@@ -1,0 +1,44 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="404 | Page Not Found">
+  <div class="min-h-screen bg-[#f4f4f0] dark:bg-[#0a0a0a] flex items-center justify-center p-4 noise-bg">
+    <div class="max-w-2xl w-full">
+      <div class="retro-card border-4 border-gray-900 dark:border-emerald-500 shadow-[8px_8px_0px_rgba(17,24,39,1)] dark:shadow-[8px_8px_0px_rgba(16,185,129,1)] bg-white dark:bg-[#111] overflow-hidden">
+        {/* Title bar */}
+        <div class="h-10 border-b-4 border-gray-900 dark:border-emerald-500 bg-gray-200 dark:bg-emerald-500/10 flex items-center px-4 justify-between">
+          <div class="flex gap-2">
+            <div class="w-3 h-3 bg-red-500 border-2 border-gray-900 dark:border-emerald-500" />
+            <div class="w-3 h-3 bg-yellow-400 border-2 border-gray-900 dark:border-emerald-500" />
+            <div class="w-3 h-3 bg-green-500 border-2 border-gray-900 dark:border-emerald-500" />
+          </div>
+          <div class="text-xs font-mono font-bold text-gray-900 dark:text-emerald-500 tracking-widest uppercase">
+            SYS_ERROR_404
+          </div>
+        </div>
+        
+        {/* Content */}
+        <div class="p-8 sm:p-12 font-mono flex flex-col items-center text-center">
+          <h1 class="text-6xl sm:text-8xl font-bold text-gray-900 dark:text-emerald-500 mb-6 drop-shadow-[4px_4px_0_rgba(0,0,0,0.1)] dark:drop-shadow-[0_0_10px_rgba(16,185,129,0.3)]">
+            404
+          </h1>
+          <p class="text-xl sm:text-2xl text-gray-700 dark:text-gray-300 mb-2 uppercase font-bold">
+            Page Not Found
+          </p>
+          <p class="text-gray-500 dark:text-gray-500 mb-8 max-w-md mx-auto">
+            The requested resource could not be located on this server. It may have been moved, deleted, or never existed.
+          </p>
+          
+          <a href="/" class="retro-btn inline-flex items-center gap-2 group">
+            <span>Return to Base</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter" class="group-hover:-translate-x-1 transition-transform">
+              <line x1="19" y1="12" x2="5" y2="12"></line>
+              <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>

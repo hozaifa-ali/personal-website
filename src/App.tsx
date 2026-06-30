@@ -11,6 +11,7 @@ import { githubData } from './data/githubData'
 
 import CustomCursor from './components/CustomCursor'
 import Preloader from './components/Preloader'
+import SpotifyWidget from './components/SpotifyWidget'
 
 function App() {
   useEffect(() => {
@@ -47,6 +48,7 @@ function App() {
       <Projects githubData={githubData} />
       <Contact />
       <Footer />
+      <SpotifyWidget />
     </div>
   )
 }

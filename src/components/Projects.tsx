@@ -13,6 +13,7 @@ interface Repository {
   forks: number
   pushed_at: string
   visibility: string
+  topics?: string[]
 }
 
 interface ProjectsProps {
@@ -172,6 +173,19 @@ const Projects = ({ githubData }: ProjectsProps) => {
                     <p className={`text-gray-700 dark:text-gray-300 font-mono leading-relaxed mb-6 ${isFeatured ? 'text-lg md:text-xl line-clamp-4' : 'text-sm line-clamp-3'}`}>
                       {project.description || 'Exploring new technologies and building innovative solutions.'}
                     </p>
+
+                    {project.topics && project.topics.length > 0 && (
+                      <div className="flex flex-wrap gap-2 mb-6">
+                        {project.topics.map((topic) => (
+                          <span
+                            key={topic}
+                            className="px-2 py-1 bg-gray-200/50 dark:bg-gray-800/50 text-gray-600 dark:text-gray-400 font-mono text-[10px] sm:text-xs uppercase tracking-wider border border-gray-300 dark:border-gray-700"
+                          >
+                            {topic}
+                          </span>
+                        ))}
+                      </div>
+                    )}
 
                     <div className={`mt-auto pt-6 border-t border-gray-100 dark:border-gray-800/50 flex items-center justify-between ${isFeatured ? 'flex-row' : 'flex-col sm:flex-row gap-4 sm:gap-0'}`}>
                       <div className="flex items-center gap-6 text-sm text-gray-500 dark:text-gray-400">

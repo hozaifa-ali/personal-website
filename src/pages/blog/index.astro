@@ -1,0 +1,68 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import BlogWrapper from '../../components/BlogWrapper';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog')).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+---
+
+<Layout title="Blog | Hozaifa Ali">
+  <BlogWrapper client:load>
+    <div class="pt-40 md:pt-48 pb-20">
+      <div class="container mx-auto px-4 sm:px-6 max-w-4xl relative z-10">
+      
+      <div class="mb-12">
+        <a href="/" class="text-brand-green hover:underline font-mono text-sm inline-flex items-center gap-2 mb-8 group">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter" class="group-hover:-translate-x-1 transition-transform">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          Back to Home
+        </a>
+        <h1 class="text-4xl sm:text-5xl font-mono font-bold text-gray-900 dark:text-white tracking-widest uppercase text-shadow-retro mb-4">
+          Tech <span class="text-emerald-500">Blog</span>
+        </h1>
+        <p class="text-gray-600 dark:text-gray-400 font-mono">Writing about software engineering, system architecture, and development.</p>
+      </div>
+
+      <div class="space-y-8">
+        {
+          posts.map((post) => (
+            <article class="retro-card p-6 sm:p-8 hover:border-emerald-500 transition-colors group">
+              <a href={`/blog/${post.slug}/`}>
+                <div class="flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-4 mb-3">
+                  <h2 class="text-2xl font-bold text-gray-900 dark:text-white group-hover:text-brand-green transition-colors font-mono uppercase tracking-tight">
+                    {post.data.title}
+                  </h2>
+                  <time class="text-sm font-mono text-gray-500 shrink-0">
+                    {post.data.pubDate.toLocaleDateString('en-us', {
+                      year: 'numeric',
+                      month: 'short',
+                      day: 'numeric',
+                    })}
+                  </time>
+                </div>
+                <p class="text-gray-700 dark:text-gray-300 font-mono mb-4 line-clamp-2">
+                  {post.data.description}
+                </p>
+                {post.data.tags && (
+                  <div class="flex gap-2">
+                    {post.data.tags.map((tag) => (
+                      <span class="text-[10px] font-mono uppercase tracking-wider px-2 py-1 bg-gray-200 dark:bg-gray-800 text-gray-600 dark:text-gray-400 border border-gray-300 dark:border-gray-700">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                )}
+              </a>
+            </article>
+          ))
+        }
+      </div>
+
+    </div>
+    </div>
+  </BlogWrapper>
+</Layout>

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Sun, Moon, Home, Briefcase, Mail, User } from 'lucide-react'
+import { Home, User, Briefcase, Mail, BookOpen, Sun, Moon } from 'lucide-react'
 import { useTheme } from '../contexts/ThemeContext'
 import { motion, useScroll, useSpring } from 'framer-motion'
 
@@ -46,10 +46,11 @@ const Navigation = () => {
   }, [])
 
   const navItems = [
-    { name: 'Home', href: '#home', icon: Home },
-    { name: 'About', href: '#about', icon: User },
-    { name: 'Projects', href: '#projects', icon: Briefcase },
-    { name: 'Contact', href: '#contact', icon: Mail },
+    { name: 'Home', href: '/#home', icon: Home },
+    { name: 'About', href: '/#about', icon: User },
+    { name: 'Projects', href: '/#projects', icon: Briefcase },
+    { name: 'Blog', href: '/blog', icon: BookOpen },
+    { name: 'Contact', href: '/#contact', icon: Mail },
   ]
 
   return (

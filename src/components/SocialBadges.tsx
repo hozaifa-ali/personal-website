@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Github, ExternalLink, MapPin, Linkedin, ArrowUpRight } from 'lucide-react';
 import SpotlightCard from './SpotlightCard';
+import CountUp from './CountUp';
 
 interface GitHubProfile {
     login: string;
@@ -155,15 +156,21 @@ const SocialBadges = () => {
 
                                 <div className="grid grid-cols-3 gap-2 py-3 border-t border-gray-200 dark:border-white/10 border-b mb-3">
                                     <div className="text-center">
-                                        <div className="text-brand-green font-bold text-lg">{githubData.public_repos}</div>
+                                        <div className="text-brand-green font-bold text-lg">
+                                            <CountUp target={githubData.public_repos} />
+                                        </div>
                                         <div className="text-xs text-gray-500 uppercase tracking-wider text-[10px]">Repos</div>
                                     </div>
                                     <div className="text-center border-l border-gray-200 dark:border-white/10">
-                                        <div className="text-brand-green font-bold text-lg">{githubData.followers}</div>
+                                        <div className="text-brand-green font-bold text-lg">
+                                            <CountUp target={githubData.followers} />
+                                        </div>
                                         <div className="text-xs text-gray-500 uppercase tracking-wider text-[10px]">Followers</div>
                                     </div>
                                     <div className="text-center border-l border-gray-200 dark:border-white/10">
-                                        <div className="text-brand-green font-bold text-lg">{githubData.following}</div>
+                                        <div className="text-brand-green font-bold text-lg">
+                                            <CountUp target={githubData.following} />
+                                        </div>
                                         <div className="text-xs text-gray-500 uppercase tracking-wider text-[10px]">Following</div>
                                     </div>
                                 </div>

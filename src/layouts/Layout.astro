@@ -5,6 +5,7 @@ interface Props {
 
 const { title } = Astro.props;
 import '../index.css';
+import { ViewTransitions } from 'astro:transitions';
 
 const siteUrl = 'https://devhozaifa.vercel.app';
 const description = 'Hozaifa Ali — Software Engineer specializing in full-stack development, backend systems, DevOps, and Flutter. Building scalable applications with React, Next.js, TypeScript, Python, Go, and more.';
@@ -17,6 +18,7 @@ const ogImage = `${siteUrl}/hozi.jpeg`;
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
+        <ViewTransitions />
 
 		<!-- Primary Meta Tags -->
 		<title>{title}</title>
