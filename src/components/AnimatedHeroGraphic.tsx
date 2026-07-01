@@ -41,14 +41,14 @@ const AnimatedHeroGraphic = () => {
                 </div>
 
                 {/* Content area */}
-                <div className="flex-1 p-4 sm:p-6 lg:p-8 flex flex-col gap-4">
+                <div className="flex-1 p-4 sm:p-6 lg:p-8 flex flex-col gap-4 overflow-hidden">
                     {/* Top Full: Live ASCII Wireframe */}
-                    <div className="border-2 border-gray-900 dark:border-emerald-500/50 flex-1 relative overflow-hidden bg-white dark:bg-[#111]">
-                        <AsciiImage imageUrl="/hozi.jpeg" cols={70} />
+                    <div className="border-2 border-gray-900 dark:border-emerald-500/50 flex-1 relative overflow-hidden bg-white dark:bg-[#111] min-h-0">
+                        <AsciiImage imageUrl="/hozi.jpeg" cols={100} bare={true} />
                     </div>
 
                     {/* Bottom Full: Data Readout Panel */}
-                    <div className="h-32 border-2 border-gray-900 dark:border-emerald-500/50 p-4 bg-gray-900 dark:bg-[#0a0a0a] overflow-hidden flex flex-col justify-center gap-2">
+                    <div className="h-32 flex-shrink-0 border-2 border-gray-900 dark:border-emerald-500/50 p-4 bg-gray-900 dark:bg-[#0a0a0a] overflow-hidden flex flex-col justify-center gap-2">
                         <div className="flex gap-4 items-start">
                             <div className="text-emerald-500 font-mono font-bold text-[10px] xl:text-xs uppercase w-24 flex-shrink-0 pt-1 terminal-cursor">
                                 &gt; EDUCATION

@@ -103,7 +103,7 @@ export default function AsciiImage({ imageUrl, cols = 80, bare = false }: AsciiI
                 ) : (
                     <motion.div
                         style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
-                        className="font-mono text-[5px] sm:text-[6.5px] md:text-[8px] lg:text-[10px] leading-[0.9] tracking-[0.1em] text-gray-900 dark:text-emerald-500 whitespace-pre text-center select-none relative z-10 group-hover:text-emerald-400"
+                        className="font-mono text-[5px] sm:text-[6.5px] md:text-[8px] lg:text-[10px] leading-[0.9] tracking-[0.25em] text-gray-900 dark:text-emerald-500 whitespace-pre text-center select-none relative z-10 group-hover:text-emerald-400"
                     >
                         {asciiArt.join('\n')}
                     </motion.div>

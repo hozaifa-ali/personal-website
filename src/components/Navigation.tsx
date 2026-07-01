@@ -74,14 +74,15 @@ const Navigation = () => {
             {/* Logo */}
             <motion.a
               href="#home"
-              className="text-lg font-sans font-bold text-gray-900 dark:text-white uppercase tracking-wider text-shadow-retro glitch-hover"
-              data-text="HOZAIFA ALI"
+              className="flex items-center gap-3 text-lg font-sans font-bold text-gray-900 dark:text-white uppercase tracking-wider text-shadow-retro"
               whileTap={{ scale: 0.95 }}
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.5 }}
             >
-              HOZAIFA ALI
+              <span className="glitch-hover" data-text="HOZAIFA ALI">HOZAIFA ALI</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 hidden sm:block"></span>
+              <span className="hidden sm:block text-[22px] text-emerald-600 dark:text-emerald-400 opacity-90 capitalize tracking-normal leading-none aref-ruqaa-regular transition-colors duration-300 hover:text-emerald-500 pb-1" style={{ direction: 'rtl' }}>حذیفہ علی</span>
             </motion.a>
 
             {/* Links */}
@@ -178,8 +179,10 @@ const Navigation = () => {
         transition={{ type: "spring", stiffness: 100, damping: 20 }}
         className={`md:hidden fixed top-0 left-0 right-0 z-40 px-6 py-4 flex justify-between items-center bg-[#f4f4f0] dark:bg-[#0a0a0a] border-b-4 border-gray-900 dark:border-emerald-500 shadow-[0px_4px_0px_rgba(17,24,39,1)] dark:shadow-[0px_4px_0px_rgba(16,185,129,0.5)]`}
       >
-        <a href="#home" className="text-xl font-sans font-bold text-gray-900 dark:text-white uppercase tracking-wider text-shadow-retro glitch-hover" data-text="HOZAIFA">
-          HOZAIFA
+        <a href="#home" className="flex items-center gap-1.5 sm:gap-2 text-[15px] sm:text-xl font-sans font-bold text-gray-900 dark:text-white uppercase tracking-wider text-shadow-retro">
+          <span className="glitch-hover" data-text="HOZAIFA ALI">HOZAIFA ALI</span>
+          <span className="w-1 h-1 rounded-full bg-emerald-500"></span>
+          <span className="text-lg sm:text-[26px] text-emerald-600 dark:text-emerald-400 opacity-90 capitalize tracking-normal leading-none aref-ruqaa-regular transition-colors duration-300 hover:text-emerald-500 pb-1" style={{ direction: 'rtl' }}>حذیفہ علی</span>
         </a>
         <motion.button
           onClick={toggleTheme}

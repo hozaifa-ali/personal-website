@@ -14,8 +14,8 @@ const SkillsRadar = () => {
   const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once: true, margin: '-100px' })
 
-  const cx = 150
-  const cy = 150
+  const cx = 200
+  const cy = 200
   const radius = 120
   const levels = 4
   const angleSlice = (Math.PI * 2) / skills.length
@@ -49,7 +49,7 @@ const SkillsRadar = () => {
         Skill Radar
       </h3>
       <div className="flex justify-center">
-        <svg viewBox="0 0 300 300" className="w-full max-w-[300px]">
+        <svg viewBox="0 0 400 400" className="w-full max-w-[400px]">
           {/* Grid levels */}
           {Array.from({ length: levels }, (_, i) => {
             const r = ((i + 1) / levels) * radius
