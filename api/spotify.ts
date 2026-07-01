@@ -4,6 +4,7 @@ const refresh_token = process.env.SPOTIFY_REFRESH_TOKEN;
 
 const basic = Buffer.from(`${client_id}:${client_secret}`).toString('base64');
 const NOW_PLAYING_ENDPOINT = `https://api.spotify.com/v1/me/player/currently-playing`;
+const RECENTLY_PLAYED_ENDPOINT = `https://api.spotify.com/v1/me/player/recently-played?limit=1`;
 const TOKEN_ENDPOINT = `https://accounts.spotify.com/api/token`;
 
 const getAccessToken = async () => {
@@ -44,6 +45,24 @@ export default async function handler(req: any, res: any) {
     });
 
     if (response.status === 204 || response.status > 400) {
+      // Fallback to recently played
+      const recentResponse = await fetch(RECENTLY_PLAYED_ENDPOINT, {
+        headers: { Authorization: `Bearer ${access_token}` }
+      });
+      
+      if (recentResponse.status === 200) {
+        const recentData = await recentResponse.json();
+        if (recentData.items && recentData.items.length > 0) {
+          const song = recentData.items[0].track;
+          return res.status(200).json({
+            isPlaying: false,
+            title: song.name,
+            artist: song.artists.map((_artist: any) => _artist.name).join(', '),
+            albumArt: song.album.images[0].url,
+            songUrl: song.external_urls.spotify
+          });
+        }
+      }
       return res.status(200).json({ isPlaying: false });
     }
 
