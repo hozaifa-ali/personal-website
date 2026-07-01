@@ -44,7 +44,7 @@ const SpotifyWidget = () => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 1, duration: 0.8 }}
-      className="flex items-center gap-2 sm:gap-3 p-1.5 sm:p-2 pr-3 sm:pr-4 bg-white/50 dark:bg-black/50 backdrop-blur-md border-2 border-gray-900 dark:border-emerald-500/30 rounded-full shadow-lg fixed bottom-4 left-4 sm:bottom-6 sm:left-6 z-50 hover:border-emerald-500 transition-colors group max-w-[calc(100vw-2rem)] sm:max-w-none"
+      className="flex items-center gap-2 sm:gap-3 p-1.5 sm:p-2 pr-3 sm:pr-4 bg-white/50 dark:bg-black/50 backdrop-blur-md border-2 border-gray-900 dark:border-emerald-500/30 rounded-full shadow-lg fixed top-4 left-4 sm:top-auto sm:bottom-6 sm:left-6 z-50 hover:border-emerald-500 transition-colors group max-w-[calc(100vw-2rem)] sm:max-w-none"
     >
       <div className={`relative w-8 h-8 sm:w-10 sm:h-10 rounded-full overflow-hidden border border-gray-900 dark:border-emerald-500 flex-shrink-0 ${!track.isPlaying && 'grayscale'}`}>
         <img 
