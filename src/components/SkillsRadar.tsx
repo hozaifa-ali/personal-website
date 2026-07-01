@@ -132,7 +132,7 @@ const SkillsRadar = () => {
                 y={p.y}
                 textAnchor={isLeft ? 'end' : p.x === cx ? 'middle' : 'start'}
                 dominantBaseline={isTop ? 'auto' : 'hanging'}
-                className="fill-gray-900 dark:fill-gray-200 text-[11px] font-mono font-bold uppercase"
+                className="fill-gray-900 dark:fill-gray-200 text-[11px] font-sans font-bold uppercase"
               >
                 {skill.name}
               </text>

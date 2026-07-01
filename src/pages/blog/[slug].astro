@@ -22,7 +22,7 @@ const { Content } = await post.render();
       <div class="container mx-auto px-4 sm:px-6 max-w-3xl relative z-10">
       
       <div class="mb-12">
-        <a href="/blog" class="text-brand-green hover:underline font-mono text-sm inline-flex items-center gap-2 mb-8 group">
+        <a href="/blog" class="text-brand-green hover:underline font-sans text-sm inline-flex items-center gap-2 mb-8 group">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter" class="group-hover:-translate-x-1 transition-transform">
             <line x1="19" y1="12" x2="5" y2="12"></line>
             <polyline points="12 19 5 12 12 5"></polyline>
@@ -35,7 +35,7 @@ const { Content } = await post.render();
         </h1>
         
         <div class="flex items-center gap-4 border-b-2 border-gray-900 dark:border-gray-800 pb-6 mb-10">
-          <time class="text-sm font-mono text-brand-green font-bold uppercase tracking-widest">
+          <time class="text-sm font-sans text-brand-green font-bold uppercase tracking-widest">
             {post.data.pubDate.toLocaleDateString('en-us', {
               year: 'numeric',
               month: 'long',
@@ -45,7 +45,7 @@ const { Content } = await post.render();
           {post.data.tags && (
             <div class="flex gap-2">
               {post.data.tags.map((tag) => (
-                <span class="text-[10px] font-mono uppercase tracking-wider px-2 py-1 bg-gray-200 dark:bg-gray-800 text-gray-600 dark:text-gray-400 border border-gray-300 dark:border-gray-700">
+                <span class="text-[10px] font-sans uppercase tracking-wider px-2 py-1 bg-gray-200 dark:bg-gray-800 text-gray-600 dark:text-gray-400 border border-gray-300 dark:border-gray-700">
                   {tag}
                 </span>
               ))}
@@ -54,7 +54,7 @@ const { Content } = await post.render();
         </div>
       </div>
 
-      <article class="prose prose-lg dark:prose-invert prose-emerald max-w-none font-mono prose-headings:font-bold prose-headings:uppercase prose-headings:tracking-tight prose-a:text-brand-green hover:prose-a:text-brand-green/80 prose-code:before:content-none prose-code:after:content-none prose-pre:bg-[#111] prose-pre:border-2 prose-pre:border-gray-800">
+      <article class="prose prose-lg dark:prose-invert prose-emerald max-w-none font-sans prose-headings:font-bold prose-headings:uppercase prose-headings:tracking-tight prose-a:text-brand-green hover:prose-a:text-brand-green/80 prose-code:before:content-none prose-code:after:content-none prose-pre:bg-[#111] prose-pre:border-2 prose-pre:border-gray-800">
         <Content />
       </article>
 

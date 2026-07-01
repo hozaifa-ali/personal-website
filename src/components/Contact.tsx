@@ -117,18 +117,18 @@ const Contact = () => {
                   >
                     <div className="p-3 bg-[#f4f4f0] dark:bg-[#111] border-2 border-gray-900 dark:border-emerald-500 shadow-[2px_2px_0px_rgba(17,24,39,1)] group-hover:shadow-[4px_4px_0px_rgba(17,24,39,1)] group-hover:-translate-y-1 transition-all rounded-none flex-shrink-0">{info.icon}</div>
                     <div>
-                      <p className="text-gray-500 dark:text-gray-400 text-xs font-mono uppercase tracking-widest mb-1.5 font-bold">{info.label}</p>
+                      <p className="text-gray-500 dark:text-gray-400 text-xs font-sans uppercase tracking-widest mb-1.5 font-bold">{info.label}</p>
                       {info.link ? (
                         <a
                           href={info.link}
                           target={info.link.startsWith('http') ? '_blank' : undefined}
                           rel={info.link.startsWith('http') ? 'noopener noreferrer' : undefined}
-                          className="text-gray-900 dark:text-white hover:text-emerald-500 font-mono transition-colors text-lg font-bold"
+                          className="text-gray-900 dark:text-white hover:text-emerald-500 font-sans transition-colors text-lg font-bold"
                         >
                           {info.value}
                         </a>
                       ) : (
-                        <p className="text-gray-900 dark:text-white text-lg font-mono font-bold">{info.value}</p>
+                        <p className="text-gray-900 dark:text-white text-lg font-sans font-bold">{info.value}</p>
                       )}
                     </div>
                   </motion.div>
@@ -138,9 +138,9 @@ const Contact = () => {
 
             <div className="retro-card p-6 sm:p-8">
               <h3 className="text-xl font-mono font-bold uppercase tracking-wider mb-6 text-gray-900 dark:text-white border-b-2 border-gray-900 dark:border-emerald-500 pb-2">Education</h3>
-              <p className="text-emerald-500 text-xl font-mono uppercase tracking-tight font-bold mb-2">Software Engineering</p>
-              <p className="text-gray-900 dark:text-gray-100 font-mono font-bold text-lg">UET Lahore</p>
-              <p className="text-gray-700 dark:text-gray-400 text-sm mt-3 font-mono">Lahore, Pakistan</p>
+              <p className="text-emerald-500 text-xl font-sans uppercase tracking-tight font-bold mb-2">Software Engineering</p>
+              <p className="text-gray-900 dark:text-gray-100 font-sans font-bold text-lg">UET Lahore</p>
+              <p className="text-gray-700 dark:text-gray-400 text-sm mt-3 font-sans">Lahore, Pakistan</p>
             </div>
           </motion.div>
 
@@ -175,7 +175,7 @@ const Contact = () => {
                 <input type="text" name="_gotcha" style={{ display: 'none' }} />
 
                 <div>
-                  <label htmlFor="name" className="block text-gray-900 dark:text-gray-100 mb-2.5 text-sm font-mono font-bold uppercase tracking-widest">
+                  <label htmlFor="name" className="block text-gray-900 dark:text-gray-100 mb-2.5 text-sm font-sans font-bold uppercase tracking-widest">
                     Name
                   </label>
                   <input
@@ -186,12 +186,12 @@ const Contact = () => {
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     required
                     disabled={status.submitting}
-                    className="w-full px-4 py-3.5 bg-[#f4f4f0] dark:bg-[#0a0a0a] border-2 border-gray-900 dark:border-gray-600 text-gray-900 dark:text-white placeholder-gray-500 focus:outline-none focus:border-emerald-500 shadow-[4px_4px_0px_rgba(17,24,39,1)] dark:shadow-[4px_4px_0px_rgba(16,185,129,0.2)] focus:shadow-[6px_6px_0px_rgba(17,24,39,1)] dark:focus:shadow-[6px_6px_0px_rgba(16,185,129,0.5)] transition-all font-mono disabled:opacity-50 rounded-none terminal-cursor-focus"
+                    className="w-full px-4 py-3.5 bg-[#f4f4f0] dark:bg-[#0a0a0a] border-2 border-gray-900 dark:border-gray-600 text-gray-900 dark:text-white placeholder-gray-500 focus:outline-none focus:border-emerald-500 shadow-[4px_4px_0px_rgba(17,24,39,1)] dark:shadow-[4px_4px_0px_rgba(16,185,129,0.2)] focus:shadow-[6px_6px_0px_rgba(17,24,39,1)] dark:focus:shadow-[6px_6px_0px_rgba(16,185,129,0.5)] transition-all font-sans disabled:opacity-50 rounded-none terminal-cursor-focus"
                     placeholder="Identify yourself..."
                   />
                 </div>
                 <div>
-                  <label htmlFor="email" className="block text-gray-900 dark:text-gray-100 mb-2.5 text-sm font-mono font-bold uppercase tracking-widest">
+                  <label htmlFor="email" className="block text-gray-900 dark:text-gray-100 mb-2.5 text-sm font-sans font-bold uppercase tracking-widest">
                     Email
                   </label>
                   <input
@@ -202,12 +202,12 @@ const Contact = () => {
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     required
                     disabled={status.submitting}
-                    className="w-full px-4 py-3.5 bg-[#f4f4f0] dark:bg-[#0a0a0a] border-2 border-gray-900 dark:border-gray-600 text-gray-900 dark:text-white placeholder-gray-500 focus:outline-none focus:border-emerald-500 shadow-[4px_4px_0px_rgba(17,24,39,1)] dark:shadow-[4px_4px_0px_rgba(16,185,129,0.2)] focus:shadow-[6px_6px_0px_rgba(17,24,39,1)] dark:focus:shadow-[6px_6px_0px_rgba(16,185,129,0.5)] transition-all font-mono disabled:opacity-50 rounded-none terminal-cursor-focus"
+                    className="w-full px-4 py-3.5 bg-[#f4f4f0] dark:bg-[#0a0a0a] border-2 border-gray-900 dark:border-gray-600 text-gray-900 dark:text-white placeholder-gray-500 focus:outline-none focus:border-emerald-500 shadow-[4px_4px_0px_rgba(17,24,39,1)] dark:shadow-[4px_4px_0px_rgba(16,185,129,0.2)] focus:shadow-[6px_6px_0px_rgba(17,24,39,1)] dark:focus:shadow-[6px_6px_0px_rgba(16,185,129,0.5)] transition-all font-sans disabled:opacity-50 rounded-none terminal-cursor-focus"
                     placeholder="your.email@mainframe.com"
                   />
                 </div>
                 <div>
-                  <label htmlFor="message" className="block text-gray-900 dark:text-gray-100 mb-2.5 text-sm font-mono font-bold uppercase tracking-widest">
+                  <label htmlFor="message" className="block text-gray-900 dark:text-gray-100 mb-2.5 text-sm font-sans font-bold uppercase tracking-widest">
                     Message
                   </label>
                   <textarea
@@ -218,7 +218,7 @@ const Contact = () => {
                     required
                     rows={5}
                     disabled={status.submitting}
-                    className="w-full px-4 py-3.5 bg-[#f4f4f0] dark:bg-[#0a0a0a] border-2 border-gray-900 dark:border-gray-600 text-gray-900 dark:text-white placeholder-gray-500 focus:outline-none focus:border-emerald-500 shadow-[4px_4px_0px_rgba(17,24,39,1)] dark:shadow-[4px_4px_0px_rgba(16,185,129,0.2)] focus:shadow-[6px_6px_0px_rgba(17,24,39,1)] dark:focus:shadow-[6px_6px_0px_rgba(16,185,129,0.5)] transition-all font-mono disabled:opacity-50 resize-none rounded-none terminal-cursor-focus"
+                    className="w-full px-4 py-3.5 bg-[#f4f4f0] dark:bg-[#0a0a0a] border-2 border-gray-900 dark:border-gray-600 text-gray-900 dark:text-white placeholder-gray-500 focus:outline-none focus:border-emerald-500 shadow-[4px_4px_0px_rgba(17,24,39,1)] dark:shadow-[4px_4px_0px_rgba(16,185,129,0.2)] focus:shadow-[6px_6px_0px_rgba(17,24,39,1)] dark:focus:shadow-[6px_6px_0px_rgba(16,185,129,0.5)] transition-all font-sans disabled:opacity-50 resize-none rounded-none terminal-cursor-focus"
                     placeholder="Enter message..."
                   />
                 </div>
@@ -270,10 +270,10 @@ const Contact = () => {
           >
             {[...Array(10)].map((_, i) => (
               <div key={i} className="flex items-center gap-8">
-                <span className="text-4xl font-mono font-black text-gray-900 dark:text-emerald-500 tracking-widest uppercase">
+                <span className="text-4xl font-sans font-black text-gray-900 dark:text-emerald-500 tracking-widest uppercase">
                   HOZAIFA ALI
                 </span>
-                <span className="text-4xl font-mono text-gray-900 dark:text-emerald-500">
+                <span className="text-4xl font-sans text-gray-900 dark:text-emerald-500">
                   ✦
                 </span>
               </div>

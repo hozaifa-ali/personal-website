@@ -74,7 +74,7 @@ const Navigation = () => {
             {/* Logo */}
             <motion.a
               href="#home"
-              className="text-lg font-mono font-bold text-gray-900 dark:text-white uppercase tracking-wider text-shadow-retro glitch-hover"
+              className="text-lg font-sans font-bold text-gray-900 dark:text-white uppercase tracking-wider text-shadow-retro glitch-hover"
               data-text="HOZAIFA ALI"
               whileTap={{ scale: 0.95 }}
               initial={{ opacity: 0, x: -20 }}
@@ -100,7 +100,7 @@ const Navigation = () => {
                     <a
                       href={item.href}
                       onMouseEnter={() => setHoveredIndex(index)}
-                      className={`px-4 py-2 text-sm font-mono font-bold uppercase transition-colors relative z-10 ${hoveredIndex === index || (isActive && hoveredIndex === null)
+                      className={`px-4 py-2 text-sm font-sans font-bold uppercase transition-colors relative z-10 ${hoveredIndex === index || (isActive && hoveredIndex === null)
                         ? 'text-gray-900 dark:text-emerald-400'
                         : 'text-gray-600 dark:text-gray-400'
                         }`}
@@ -178,7 +178,7 @@ const Navigation = () => {
         transition={{ type: "spring", stiffness: 100, damping: 20 }}
         className={`md:hidden fixed top-0 left-0 right-0 z-40 px-6 py-4 flex justify-between items-center bg-[#f4f4f0] dark:bg-[#0a0a0a] border-b-4 border-gray-900 dark:border-emerald-500 shadow-[0px_4px_0px_rgba(17,24,39,1)] dark:shadow-[0px_4px_0px_rgba(16,185,129,0.5)]`}
       >
-        <a href="#home" className="text-xl font-mono font-bold text-gray-900 dark:text-white uppercase tracking-wider text-shadow-retro glitch-hover" data-text="HOZAIFA">
+        <a href="#home" className="text-xl font-sans font-bold text-gray-900 dark:text-white uppercase tracking-wider text-shadow-retro glitch-hover" data-text="HOZAIFA">
           HOZAIFA
         </a>
         <motion.button
@@ -220,7 +220,7 @@ const Navigation = () => {
                     className={`group flex flex-col items-center gap-1 transition-all duration-100 px-3 py-2 border-2 border-transparent active:scale-95 transform relative ${isActive ? 'text-gray-900 dark:text-emerald-400 border-gray-900 dark:border-emerald-500 bg-emerald-400 dark:bg-gray-800 shadow-[2px_2px_0px_rgba(17,24,39,1)]' : 'text-gray-600 dark:text-gray-400 hover:border-gray-900 dark:hover:border-emerald-500 hover:bg-gray-200 dark:hover:bg-gray-800'}`}
                   >
                     <Icon size={22} strokeWidth={isActive ? 2.5 : 2} className="relative z-10 transition-transform duration-100" />
-                    <span className="text-[10px] font-mono font-bold tracking-wider relative z-10 uppercase">{item.name}</span>
+                    <span className="text-[10px] font-sans font-bold tracking-wider relative z-10 uppercase">{item.name}</span>
                   </a>
                 </li>
               )

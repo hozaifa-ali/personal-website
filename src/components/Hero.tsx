@@ -57,7 +57,7 @@ const Hero = () => {
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.2, duration: 0.6 }}
-                className="text-brand-green font-mono text-xs tracking-[0.2em] uppercase font-medium"
+                className="text-brand-green font-sans text-xs tracking-[0.2em] uppercase font-medium"
               >
                 <ScrambleText text="Software Engineer" delay={500} />
               </motion.p>
@@ -111,11 +111,11 @@ const Hero = () => {
                   <ArrowDown size={18} />
                 </motion.div>
               </a>
-              <a href="#contact" className="px-8 py-4 text-sm sm:text-base font-mono font-bold uppercase tracking-wider border-2 border-gray-900 dark:border-gray-200 text-gray-900 dark:text-[#f4f4f0] transition-transform shadow-[4px_4px_0px_rgba(17,24,39,1)] dark:shadow-[4px_4px_0px_rgba(244,244,240,0.5)] hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[6px_6px_0px_rgba(17,24,39,1)] active:translate-y-1 active:translate-x-1 active:shadow-none bg-transparent">
+              <a href="#contact" className="px-8 py-4 text-sm sm:text-base font-sans font-bold uppercase tracking-wider border-2 border-gray-900 dark:border-gray-200 text-gray-900 dark:text-[#f4f4f0] transition-transform shadow-[4px_4px_0px_rgba(17,24,39,1)] dark:shadow-[4px_4px_0px_rgba(244,244,240,0.5)] hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[6px_6px_0px_rgba(17,24,39,1)] active:translate-y-1 active:translate-x-1 active:shadow-none bg-transparent">
                 Get In Touch
               </a>
               {/* Resume Button — Hidden for now. To enable: remove the 'hidden' class and add your resume URL */}
-              <a href="#" className="hidden px-8 py-4 text-sm sm:text-base font-mono font-bold uppercase tracking-wider border-2 border-emerald-500 text-emerald-600 dark:text-emerald-400 transition-transform shadow-[4px_4px_0px_rgba(16,185,129,1)] hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[6px_6px_0px_rgba(16,185,129,1)] active:translate-y-1 active:translate-x-1 active:shadow-none bg-transparent" target="_blank" rel="noopener noreferrer">
+              <a href="#" className="hidden px-8 py-4 text-sm sm:text-base font-sans font-bold uppercase tracking-wider border-2 border-emerald-500 text-emerald-600 dark:text-emerald-400 transition-transform shadow-[4px_4px_0px_rgba(16,185,129,1)] hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[6px_6px_0px_rgba(16,185,129,1)] active:translate-y-1 active:translate-x-1 active:shadow-none bg-transparent" target="_blank" rel="noopener noreferrer">
                 Resume ↗
               </a>
             </motion.div>
@@ -156,7 +156,7 @@ const Hero = () => {
           transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
           className="flex flex-col items-center gap-2 text-gray-400 dark:text-gray-600"
         >
-          <span className="text-xs font-mono uppercase tracking-wider">Scroll</span>
+          <span className="text-xs font-sans uppercase tracking-wider">Scroll</span>
           <ArrowDown size={18} />
         </motion.div>
       </motion.div>

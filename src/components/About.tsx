@@ -96,7 +96,7 @@ const About = () => {
                     <div className="flex-1 min-w-0">
                       <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-1.5 uppercase font-mono">{item.title}</h4>
                       <p className="text-emerald-500 text-sm font-bold mb-2 uppercase tracking-wider">{item.institution} • {item.period}</p>
-                      <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed font-mono">{item.description}</p>
+                      <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed font-sans">{item.description}</p>
                     </div>
                   </div>
                 </motion.div>
@@ -135,7 +135,7 @@ const About = () => {
                     {skillGroup.items.map((skill) => (
                       <span
                         key={skill}
-                        className="px-3.5 py-1.5 bg-[#f4f4f0] dark:bg-[#111] border-2 border-gray-900 dark:border-gray-600 shadow-[2px_2px_0px_rgba(17,24,39,1)] text-sm font-mono font-bold text-gray-900 dark:text-gray-100 hover:-translate-y-1 hover:shadow-[4px_4px_0px_rgba(16,185,129,1)] hover:border-emerald-500 transition-all cursor-crosshair"
+                        className="px-3.5 py-1.5 bg-[#f4f4f0] dark:bg-[#111] border-2 border-gray-900 dark:border-gray-600 shadow-[2px_2px_0px_rgba(17,24,39,1)] text-sm font-sans font-bold text-gray-900 dark:text-gray-100 hover:-translate-y-1 hover:shadow-[4px_4px_0px_rgba(16,185,129,1)] hover:border-emerald-500 transition-all cursor-crosshair"
                       >
                         {skill}
                       </span>
@@ -177,7 +177,7 @@ const About = () => {
                   </div>
                   <h4 className="font-mono font-bold text-gray-900 dark:text-white text-lg uppercase tracking-tight">{item.title}</h4>
                 </div>
-                <p className="text-gray-700 dark:text-gray-300 text-sm font-mono leading-relaxed border-l-2 border-emerald-500 pl-3 ml-5">{item.desc}</p>
+                <p className="text-gray-700 dark:text-gray-300 text-sm font-sans leading-relaxed border-l-2 border-emerald-500 pl-3 ml-5">{item.desc}</p>
               </div>
             ))}
           </div>

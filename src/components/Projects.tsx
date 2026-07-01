@@ -120,7 +120,7 @@ const Projects = ({ githubData }: ProjectsProps) => {
                   <div className="h-8 border-b-4 border-gray-900 dark:border-emerald-500 bg-gray-200 dark:bg-emerald-500/10 flex items-center px-3 justify-between pointer-events-none">
                     <div className="flex gap-2 items-center">
                       <div className="h-3 w-3 border-2 border-gray-900 dark:border-emerald-500 bg-[#f4f4f0] dark:bg-transparent" />
-                      <span className="text-[10px] font-mono font-bold text-gray-900 dark:text-emerald-500 tracking-widest uppercase">
+                      <span className="text-[10px] font-sans font-bold text-gray-900 dark:text-emerald-500 tracking-widest uppercase">
                         {project.name.substring(0, 15).replace(/\s+/g, '_')}.EXE
                       </span>
                     </div>
@@ -139,7 +139,7 @@ const Projects = ({ githubData }: ProjectsProps) => {
                     <div className="flex items-start justify-between mb-4">
                       <div className="flex-1 min-w-0 pr-4">
                         <div
-                          className={`${isFeatured ? 'text-2xl md:text-3xl' : 'text-lg'} font-mono font-bold uppercase tracking-tight text-gray-900 dark:text-white mb-3 group-hover:text-emerald-500 transition-colors terminal-cursor-focus underline decoration-emerald-500/30 underline-offset-4`}
+                          className={`${isFeatured ? 'text-2xl md:text-3xl' : 'text-lg'} font-sans font-bold uppercase tracking-tight text-gray-900 dark:text-white mb-3 group-hover:text-emerald-500 transition-colors terminal-cursor-focus underline decoration-emerald-500/30 underline-offset-4`}
                         >
                           {project.name}
                         </div>
@@ -150,7 +150,7 @@ const Projects = ({ githubData }: ProjectsProps) => {
                               className="w-2.5 h-2.5 rounded-full flex-shrink-0 shadow-[0_0_10px_rgba(0,0,0,0.2)]"
                               style={{ backgroundColor: getLanguageColor(project.language) }}
                             />
-                            <span className="text-xs text-gray-500 dark:text-gray-400 font-mono uppercase tracking-wider">{project.language}</span>
+                            <span className="text-xs text-gray-500 dark:text-gray-400 font-sans uppercase tracking-wider">{project.language}</span>
                           </div>
                         )}
                       </div>
@@ -170,7 +170,7 @@ const Projects = ({ githubData }: ProjectsProps) => {
                       </div>
                     </div>
 
-                    <p className={`text-gray-700 dark:text-gray-300 font-mono leading-relaxed mb-6 ${isFeatured ? 'text-lg md:text-xl line-clamp-4' : 'text-sm line-clamp-3'}`}>
+                    <p className={`text-gray-700 dark:text-gray-300 font-sans leading-relaxed mb-6 ${isFeatured ? 'text-lg md:text-xl line-clamp-4' : 'text-sm line-clamp-3'}`}>
                       {project.description || 'Exploring new technologies and building innovative solutions.'}
                     </p>
 
@@ -179,7 +179,7 @@ const Projects = ({ githubData }: ProjectsProps) => {
                         {project.topics.map((topic) => (
                           <span
                             key={topic}
-                            className="px-2 py-1 bg-gray-200/50 dark:bg-gray-800/50 text-gray-600 dark:text-gray-400 font-mono text-[10px] sm:text-xs uppercase tracking-wider border border-gray-300 dark:border-gray-700"
+                            className="px-2 py-1 bg-gray-200/50 dark:bg-gray-800/50 text-gray-600 dark:text-gray-400 font-sans text-[10px] sm:text-xs uppercase tracking-wider border border-gray-300 dark:border-gray-700"
                           >
                             {topic}
                           </span>
@@ -195,7 +195,7 @@ const Projects = ({ githubData }: ProjectsProps) => {
                         </div>
                         <div className="flex items-center gap-2">
                           <GitFork size={16} />
-                          <span className="font-mono font-bold">{project.forks}</span>
+                          <span className="font-sans font-bold">{project.forks}</span>
                         </div>
                       </div>
 

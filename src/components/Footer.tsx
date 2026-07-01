@@ -42,7 +42,7 @@ const Footer = () => {
             viewport={{ once: true }}
             className="inline-block border-4 border-gray-900 dark:border-emerald-500 bg-gray-900 dark:bg-emerald-500 px-8 py-4 shadow-[8px_8px_0px_rgba(16,185,129,1)] dark:shadow-[8px_8px_0px_rgba(244,244,240,0.8)]"
           >
-            <span className="text-4xl sm:text-5xl md:text-6xl font-mono font-black text-[#f4f4f0] dark:text-gray-900 tracking-widest uppercase">
+            <span className="text-4xl sm:text-5xl md:text-6xl font-sans font-black text-[#f4f4f0] dark:text-gray-900 tracking-widest uppercase">
               {endText}
             </span>
           </motion.div>
@@ -68,12 +68,12 @@ const Footer = () => {
             transition={{ delay: 0.2 }}
             className="flex flex-col items-center gap-4 mt-4"
           >
-            <p className="text-gray-900 dark:text-emerald-500 font-mono font-bold tracking-widest uppercase bg-[#f4f4f0] dark:bg-[#111] px-4 py-2 border-2 border-gray-900 dark:border-emerald-500">
+            <p className="text-gray-900 dark:text-emerald-500 font-sans font-bold tracking-widest uppercase bg-[#f4f4f0] dark:bg-[#111] px-4 py-2 border-2 border-gray-900 dark:border-emerald-500">
               SYSTEM HALTED © {new Date().getFullYear()}
             </p>
 
             {/* Simulated Repo Status Bar */}
-            <div className="flex flex-wrap justify-center gap-4 text-xs sm:text-sm font-mono font-bold text-gray-700 dark:text-emerald-400 mt-2">
+            <div className="flex flex-wrap justify-center gap-4 text-xs sm:text-sm font-sans font-bold text-gray-700 dark:text-emerald-400 mt-2">
               <span className="flex items-center gap-2 border-2 border-gray-900 dark:border-emerald-500 px-3 py-1 bg-white dark:bg-black">
                 <Terminal size={14} /> MIT LICENSED
               </span>
