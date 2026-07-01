@@ -8,25 +8,55 @@ import '../index.css';
 import { ViewTransitions } from 'astro:transitions';
 
 const siteUrl = 'https://devhozaifa.vercel.app';
-const description = 'Hozaifa Ali — Software Engineer specializing in full-stack development, backend systems, DevOps, and Flutter. Building scalable applications with React, Next.js, TypeScript, Python, Go, and more.';
+const description = 'Muhmmad Hozaifa Ali — Software Engineer specializing in full-stack development, backend systems, DevOps, and mobile applications. Building scalable ecosystems with React, TypeScript, Rust, C#, and Python.';
 const ogImage = `${siteUrl}/hozi.jpeg`;
+
+// Structured Data for Google Knowledge Graph
+const schema = {
+  "@context": "https://schema.org/",
+  "@type": "Person",
+  "name": "Muhmmad Hozaifa Ali",
+  "alternateName": "Hozaifa Ali",
+  "jobTitle": "Software Engineering Student & Developer",
+  "url": siteUrl,
+  "image": ogImage,
+  "sameAs": [
+    "https://github.com/hozaifa-ali",
+    "https://pk.linkedin.com/in/m-hozaifa-ali" 
+  ],
+  "knowsAbout": [
+    "Software Engineering",
+    "Full-Stack Development",
+    "DevOps",
+    "TypeScript",
+    "Rust",
+    "C#",
+    "React",
+    "Python",
+    "Backend Systems"
+  ],
+  "homeLocation": {
+    "@type": "Place",
+    "name": "Lahore, Pakistan"
+  }
+};
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta name="generator" content={Astro.generator} />
 		<meta name="google-site-verification" content="qzvJSlLJMV8MSvDw6y4-p3PpsipXUuR5XBfMpCR4Ci8" />
-        <ViewTransitions />
+		<ViewTransitions />
 
 		<!-- Primary Meta Tags -->
-		<title>{title}</title>
-		<meta name="title" content={title} />
+		<title>{title} | Muhmmad Hozaifa Ali</title>
+		<meta name="title" content={`${title} | Muhmmad Hozaifa Ali`} />
 		<meta name="description" content={description} />
-		<meta name="author" content="Hozaifa Ali" />
-		<meta name="keywords" content="Software Engineer, Backend Developer, Flutter Developer, DevOps, Full Stack Developer, React, Next.js, TypeScript, Python, Go, Node.js, Hozaifa Ali" />
+		<meta name="author" content="Muhmmad Hozaifa Ali" />
+		<meta name="keywords" content="Muhmmad Hozaifa Ali, Hozaifa Ali, Software Engineer, Backend Developer, DevOps, Full Stack Developer, React, Next.js, TypeScript, Rust, C#, Python, DevPocket, ObjectiveAI" />
 		<link rel="canonical" href={siteUrl} />
 
 		<!-- Favicon -->
@@ -46,6 +76,9 @@ const ogImage = `${siteUrl}/hozi.jpeg`;
 		<meta property="twitter:title" content={title} />
 		<meta property="twitter:description" content={description} />
 		<meta property="twitter:image" content={ogImage} />
+
+		<!-- JSON-LD Structured Data Injection -->
+		<script type="application/ld+json" set:html={JSON.stringify(schema)} />
 	</head>
 	<body class="bg-transparent text-gray-900 dark:text-white transition-colors duration-300">
 		<slot />
